@@ -16,9 +16,6 @@
     "paths": {
       "@/*": [
         "src/*"
-      ],
-      "iconfont": [
-        "./src/assets/iconfont"
       ]
     },
     "types": [

@@ -11,8 +11,8 @@ import '@/assets/css/minx.less'
 import '@/router/routingConfiguration'
 
 // 引入字体图标
-import 'iconfont/iconfont.css'
-import 'iconfont/iconfont.js'
+import '@/assets/iconfont/iconfont.css'
+import '@/assets/iconfont/iconfont.js'
 
 // 引入请求拦截
 import "@/api/request"

@@ -25,35 +25,35 @@
 </template>
 
 <script>
-import { uploadCOS } from '@/utils/upload'
+import { uploadCOS } from "@/utils/upload";
 
-import Editor from '@tinymce/tinymce-vue'
-import 'tinymce/themes/silver'
-import 'tinymce/skins/ui/oxide/skin.min.css'
-import 'tinymce/plugins/image'
-import 'tinymce/plugins/lists'
-import 'tinymce/plugins/advlist'
-import 'tinymce/plugins/anchor'
-import 'tinymce/plugins/autosave'
-import 'tinymce/plugins/code'
-import 'tinymce/plugins/paste'
-import 'tinymce/plugins/directionality'
-import 'tinymce/plugins/link'
-import 'tinymce/plugins/fullscreen'
-import 'tinymce/plugins/hr'
-import 'tinymce/plugins/insertdatetime'
-import 'tinymce/plugins/pagebreak'
-import 'tinymce/plugins/preview'
-import 'tinymce/plugins/print'
-import 'tinymce/plugins/save'
-import 'tinymce/plugins/searchreplace'
-import 'tinymce/plugins/table'
-import 'tinymce/plugins/wordcount'
-import 'tinymce/plugins/toc'
-import 'tinymce/plugins/charmap'
+import Editor from "@tinymce/tinymce-vue";
+import "tinymce/themes/silver";
+import "tinymce/skins/ui/oxide/skin.min.css";
+import "tinymce/plugins/image";
+import "tinymce/plugins/lists";
+import "tinymce/plugins/advlist";
+import "tinymce/plugins/anchor";
+import "tinymce/plugins/autosave";
+import "tinymce/plugins/code";
+import "tinymce/plugins/paste";
+import "tinymce/plugins/directionality";
+import "tinymce/plugins/link";
+import "tinymce/plugins/fullscreen";
+import "tinymce/plugins/hr";
+import "tinymce/plugins/insertdatetime";
+import "tinymce/plugins/pagebreak";
+import "tinymce/plugins/preview";
+import "tinymce/plugins/print";
+import "tinymce/plugins/save";
+import "tinymce/plugins/searchreplace";
+import "tinymce/plugins/table";
+import "tinymce/plugins/wordcount";
+import "tinymce/plugins/toc";
+import "tinymce/plugins/charmap";
 
 export default {
-  name: 'richtextstyle',
+  name: "richtextstyle",
   props: {
     datas: Object,
   },
@@ -64,30 +64,30 @@ export default {
     return {
       init: {
         height: 550,
-        language_url: '/langs/zh_CN.js',
-        language: 'zh_CN',
+        language_url: "/langs/zh_CN.js",
+        language: "zh_CN",
         plugins: [
-          'charmap',
-          'toc',
-          'wordcount',
-          'table',
-          'searchreplace',
-          'image',
-          'link',
-          'lists',
-          'advlist',
-          'anchor',
-          'autosave',
-          'code',
-          'paste',
-          'directionality',
-          'fullscreen',
-          'hr',
-          'insertdatetime',
-          'pagebreak',
-          'preview',
-          'print',
-          'save',
+          "charmap",
+          "toc",
+          "wordcount",
+          "table",
+          "searchreplace",
+          "image",
+          "link",
+          "lists",
+          "advlist",
+          "anchor",
+          "autosave",
+          "code",
+          "paste",
+          "directionality",
+          "fullscreen",
+          "hr",
+          "insertdatetime",
+          "pagebreak",
+          "preview",
+          "print",
+          "save",
         ],
         image_advtab: true,
         toolbar: [
@@ -97,58 +97,57 @@ export default {
           backcolor formatselect fontselect fontsizeselect forecolor 
           subscript superscript hr preview print searchreplace wordcount toc charmap bullist numlist insertdatetime undo redo`,
         ],
-        theme: 'silver', //主题
+        theme: "silver", //主题
         menubar: false,
         images_upload_handler: (blobInfo, succFun, failFun) => {
           // 腾讯云COS上传开始
           uploadCOS(blobInfo.blob()).then((res) => {
-            succFun(res)
-          })
-          return
+            succFun(res);
+          });
           //（如果要用api接口上传删除腾讯云COS上传这些代码）
           // 腾讯云COS上传结束
 
-          var formData = new FormData()
+          var formData = new FormData();
 
-          formData.append('path', 'test/')
-          formData.append('file', blobInfo.blob(), blobInfo.blob().name)
+          formData.append("path", "test/");
+          formData.append("file", blobInfo.blob(), blobInfo.blob().name);
 
-          var xhr = new XMLHttpRequest()
-          xhr.withCredentials = false
-          xhr.open('POST', `${window.global_config.BASE_URL}upload/miniShop`)
+          var xhr = new XMLHttpRequest();
+          xhr.withCredentials = false;
+          xhr.open("POST", `${window.global_config.BASE_URL}upload/miniShop`);
 
           xhr.onload = function () {
             // 获取数据
-            var res = JSON.parse(xhr.response)
-            if (res.success != true) return failFun('HTTP Error: ' + res.msg)
-            succFun(res.data.src)
-          }
-          xhr.send(formData)
+            var res = JSON.parse(xhr.response);
+            if (res.success != true) return failFun("HTTP Error: " + res.msg);
+            succFun(res.data.src);
+          };
+          xhr.send(formData);
         },
       },
       predefineColors: [
         // 颜色选择器预设
-        '#ff4500',
-        '#ff8c00',
-        '#ffd700',
-        '#90ee90',
-        '#00ced1',
-        '#1e90ff',
-        '#c71585',
-        '#409EFF',
-        '#909399',
-        '#C0C4CC',
-        'rgba(255, 69, 0, 0.68)',
-        'rgb(255, 120, 0)',
-        'hsv(51, 100, 98)',
-        'hsva(120, 40, 94, 0.5)',
-        'hsl(181, 100%, 37%)',
-        'hsla(209, 100%, 56%, 0.73)',
-        '#c7158577',
+        "#ff4500",
+        "#ff8c00",
+        "#ffd700",
+        "#90ee90",
+        "#00ced1",
+        "#1e90ff",
+        "#c71585",
+        "#409EFF",
+        "#909399",
+        "#C0C4CC",
+        "rgba(255, 69, 0, 0.68)",
+        "rgb(255, 120, 0)",
+        "hsv(51, 100, 98)",
+        "hsva(120, 40, 94, 0.5)",
+        "hsl(181, 100%, 37%)",
+        "hsla(209, 100%, 56%, 0.73)",
+        "#c7158577",
       ],
-    }
+    };
   },
-}
+};
 </script>
 
 <style scoped lang="less">

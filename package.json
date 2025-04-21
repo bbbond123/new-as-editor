@@ -19,14 +19,14 @@
     "html2canvas": "1.0.0-alpha.9",
     "less": "^4.3.0",
     "nprogress": "^0.2.0",
+    "qrcode": "^1.4.4",
+    "qs": "^6.9.1",
+    "tinymce": "^5.10.9",
     "vant": "^4.9.19",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0",
     "vuedraggable": "^4.1.0",
-    "vuex": "^4.0.2",
-    "qrcode": "^1.4.4",
-    "qs": "^6.9.1",
-    "tinymce": "^5.10.3"
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
     "@types/file-saver": "^2.0.7",
@@ -34,13 +34,13 @@
     "@types/nprogress": "^0.2.3",
     "@vitejs/plugin-vue": "^5.2.3",
     "@vue/tsconfig": "^0.7.0",
+    "swiper": "^5.3.6",
     "typescript": "~5.7.2",
     "unplugin-auto-import": "^0.16.2",
     "unplugin-icons": "^0.16.1",
     "unplugin-vue-components": "^0.24.1",
     "vite": "^6.3.1",
     "vite-plugin-vue-devtools": "^7.7.0",
-    "vue-tsc": "^2.2.8",
-    "swiper": "^5.3.6"
+    "vue-tsc": "^2.2.8"
   }
 }
