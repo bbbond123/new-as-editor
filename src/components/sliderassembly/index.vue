@@ -70,7 +70,7 @@ export default {
             text: '底部导航',
             type: '1-5',
             icon: 'icon-daohang',
-            name: 'tabBar',
+            name: 'tabbar',
           },
           {
             text: '魔方',

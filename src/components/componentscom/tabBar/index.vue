@@ -1,5 +1,5 @@
 <template>
-  <div class="tabBar">
+  <div class="tabBarName">
     <div v-if="datas.iconList.length !== 0" class="tabbar">
       <van-tabbar
         v-model="active"
@@ -79,7 +79,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.tabBar {
+.tabBarName {
   width: 100%;
   position: relative;
   position: absolute;

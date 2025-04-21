@@ -424,6 +424,10 @@ const allowDrop = (event) => {
  * @param {Object} event event对象
  */
 const drop = (event: any) => {
+  console.log(
+    'event.dataTransfer.getData("componentName")',
+    event.dataTransfer.getData("componentName")
+  );
   /* 获取数据 */
   let data = utils.deepClone(
     componentProperties.get(event.dataTransfer.getData("componentName"))
