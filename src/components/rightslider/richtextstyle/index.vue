@@ -62,7 +62,6 @@ import "tinymce/plugins/table";
 import "tinymce/plugins/wordcount";
 import "tinymce/plugins/toc";
 import "tinymce/plugins/charmap";
-
 import Editor from '@tinymce/tinymce-vue'
 
 export default {
