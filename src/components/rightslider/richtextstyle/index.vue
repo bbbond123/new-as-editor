@@ -32,7 +32,6 @@ import 'tinymce/tinymce' // <---- MUST COME FIRST
 import 'tinymce/icons/default/icons'
 import 'tinymce/themes/silver/theme'
 import 'tinymce/skins/ui/oxide/skin.css'
-
 // TinyMCE plugins
 // https://www.tiny.cloud/docs/tinymce/6/plugins/
 import 'tinymce/plugins/lists/plugin'
@@ -42,12 +41,6 @@ import 'tinymce/plugins/table/plugin'
 import 'tinymce/plugins/code/plugin'
 import 'tinymce/plugins/help/plugin'
 import 'tinymce/plugins/wordcount/plugin'
-
-
-
-// import Editor from "@tinymce/tinymce-vue";
-import "tinymce/themes/silver";
-import "tinymce/skins/ui/oxide/skin.min.css";
 import "tinymce/plugins/image";
 import "tinymce/plugins/lists";
 import "tinymce/plugins/advlist";
