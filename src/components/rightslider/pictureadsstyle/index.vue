@@ -150,11 +150,11 @@
       >
         <!-- 单选框 -->
         <el-radio-group v-model="datas.rowindividual" class="radi">
-          <el-radio :label="2">2个</el-radio>
-          <el-radio :label="3">3个</el-radio>
-          <el-radio :label="4">4个</el-radio>
-          <el-radio :label="5">5个</el-radio>
-          <el-radio :label="6">6个</el-radio>
+          <el-radio :value="2">2个</el-radio>
+          <el-radio :value="3">3个</el-radio>
+          <el-radio :value="4">4个</el-radio>
+          <el-radio :value="5">5个</el-radio>
+          <el-radio :value="6">6个</el-radio>
         </el-radio-group>
       </el-form-item>
 
@@ -163,10 +163,10 @@
       <!-- 图片倒角 -->
       <el-form-item label="分页类型" class="lef borrediu">
         <el-radio-group v-model="datas.pagingType" class="radi1">
-          <el-radio :label="0">不显示</el-radio>
-          <el-radio label="bullets">样式一</el-radio>
-          <el-radio label="fraction">样式二</el-radio>
-          <el-radio label="progressbar">样式三</el-radio>
+          <el-radio :value="0">不显示</el-radio>
+          <el-radio value="bullets">样式一</el-radio>
+          <el-radio value="fraction">样式二</el-radio>
+          <el-radio value="progressbar">样式三</el-radio>
         </el-radio-group>
       </el-form-item>
 

@@ -351,12 +351,12 @@ componentProperties.set('investigate', {
     jsonData: [], //value1为sass显示内容，value2为前端显示内容
   },
 })
-componentProperties.set('tabBar', {
-  component: 'tabBar',
+componentProperties.set('tabbar', {
+  component: 'tabbar',
   text: '底部导航',
   type: '1-5',
   active: true,
-  style: 'tabBarStyle',
+  style: 'tabbarstyle',
   setStyle: {
     text: '底部导航',
     activeColor: '#1989fa',

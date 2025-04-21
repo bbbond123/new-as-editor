@@ -77,7 +77,7 @@
         <el-radio-group v-model="datas.navigationType">
           <el-radio
             style="margin-left: 35px"
-            :label="index - 1"
+            :value="index - 1"
             v-for="index in 2"
             :key="index"
             >{{ index === 1 ? '图片导航' : '文字导航' }}</el-radio

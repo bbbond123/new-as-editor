@@ -75,6 +75,7 @@ declare module '@vue/runtime-core' {
     Storenotecardstyle: typeof import('./../src/components/rightslider/storenotecardstyle/index.vue')['default']
     Suspension: typeof import('./../src/components/componentscom/suspension/index.vue')['default']
     Suspensionstyle: typeof import('./../src/components/rightslider/suspensionstyle/index.vue')['default']
+    Tabbar: typeof import('./../src/components/componentscom/tabbar/index.vue')['default']
     TabBar: typeof import('./../src/components/componentscom/tabBar/index.vue')['default']
     TabBarStyle: typeof import('./../src/components/rightslider/tabBarStyle/index.vue')['default']
     UploadCommodity: typeof import('./../src/components/uploadCommodity/index.vue')['default']

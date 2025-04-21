@@ -42,7 +42,7 @@
       <!-- 商品类型选择 -->
       <el-form-item label="商品类型" class="lef">
         <el-radio-group v-model="datas.commoditylisttype">
-          <el-radio :label="index - 1" v-for="index in 3" :key="index"
+          <el-radio :value="index - 1" v-for="index in 3" :key="index"
             >类型{{ index }}</el-radio
           >
         </el-radio-group>
@@ -346,7 +346,7 @@
         class="radi1"
         v-show="datas.purchasebutton"
       >
-        <el-radio :label="index - 1" v-for="index in 8" :key="index"
+        <el-radio :value="index - 1" v-for="index in 8" :key="index"
           >样式{{ index }}</el-radio
         >
 
@@ -391,7 +391,7 @@
       <el-form-item class="lef" label="位置">
         <el-radio-group v-model="datas.tagPosition" class="radi1">
           <el-radio
-            :label="index"
+            :value="index"
             v-for="(item, index) in tagPosition"
             :key="index"
             >{{ item }}</el-radio

@@ -140,7 +140,7 @@ import uploadimg from '@/components/uploadImg/index.vue' //图片上传
 import vuedraggable from 'vuedraggable' //拖拽组件
 
 export default {
-  name: 'tabBarStyle',
+  name: 'tabbarstyle',
   props: {
     datas: Object,
   },

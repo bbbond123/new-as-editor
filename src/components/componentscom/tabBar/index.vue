@@ -47,7 +47,7 @@
 
 <script>
 export default {
-  name: 'tabBar',
+  name: 'tabbar',
   props: {
     datas: Object
   },

@@ -51,7 +51,7 @@
       <el-radio-group v-model="datas.rubiksCubeType" class="select-sp">
         <el-radio
           style="margin-top: 10px; margin-right: 10px"
-          :label="item.type"
+          :value="item.type"
           v-for="(item, index) in rubiksCubeTypes"
           :key="index"
           >{{ item.content }}</el-radio

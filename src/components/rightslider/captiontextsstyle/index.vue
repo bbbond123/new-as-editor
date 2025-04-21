@@ -187,9 +187,9 @@
       <!-- 更多样式选择 -->
       <div v-show="datas.more.show ? true : false">
         <el-radio-group v-model="datas.more.type">
-          <el-radio :label="0">样式一</el-radio>
-          <el-radio :label="1">样式二</el-radio>
-          <el-radio :label="2">样式三</el-radio>
+          <el-radio :value="0">样式一</el-radio>
+          <el-radio :value="1">样式二</el-radio>
+          <el-radio :value="2">样式三</el-radio>
         </el-radio-group>
 
         <div style="height: 10px" />
@@ -210,8 +210,8 @@
             v-model="datas.more.httpType"
             style="margin-left: 18px"
           >
-            <el-radio :label="10">内部链接</el-radio>
-            <el-radio :label="11">外部链接</el-radio>
+            <el-radio :value="10">内部链接</el-radio>
+            <el-radio :value="11">外部链接</el-radio>
           </el-radio-group>
 
           <!-- 输入http -->
