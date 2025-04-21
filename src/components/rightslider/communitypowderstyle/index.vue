@@ -18,7 +18,7 @@
           <img
             draggable="false"
             v-if="!datas.mainImg"
-            src="../../../assets/images/powder.png"
+            src="@/assets/images/powder.png"
             alt=""
           />
           <img draggable="false" v-else :src="datas.mainImg" alt="" />

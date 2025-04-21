@@ -27,7 +27,7 @@
         <img
           draggable="false"
           v-else
-          src="../../../assets/images/backimg.png"
+          src="@/assets/images/backimg.png"
           alt=""
         />
       </div>
@@ -44,7 +44,7 @@
           <img
             draggable="false"
             v-else
-            src="../../../assets/images/headerimg.png"
+            src="@/assets/images/headerimg.png"
             alt=""
           />
         </div>
@@ -74,7 +74,7 @@
         <img
           draggable="false"
           v-else
-          src="../../../assets/images/backimg.png"
+          src="@/assets/images/backimg.png"
           alt=""
         />
       </div>
@@ -91,7 +91,7 @@
           <img
             draggable="false"
             v-else
-            src="../../../assets/images/headerimg.png"
+            src="@/assets/images/headerimg.png"
             alt=""
           />
         </div>
@@ -121,7 +121,7 @@
         <img
           draggable="false"
           v-else
-          src="../../../assets/images/backimg.png"
+          src="@/assets/images/backimg.png"
           alt=""
         />
       </div>
@@ -138,7 +138,7 @@
           <img
             draggable="false"
             v-else
-            src="../../../assets/images/headerimg.png"
+            src="@/assets/images/headerimg.png"
             alt=""
           />
         </div>
@@ -168,7 +168,7 @@
         <img
           draggable="false"
           v-else
-          src="../../../assets/images/backimg.png"
+          src="@/assets/images/backimg.png"
           alt=""
         />
       </div>
@@ -185,7 +185,7 @@
           <img
             draggable="false"
             v-else
-            src="../../../assets/images/headerimg.png"
+            src="@/assets/images/headerimg.png"
             alt=""
           />
         </div>

@@ -9,7 +9,7 @@
     <img
       draggable="false"
       v-show="!showimageList"
-      src="../../../assets/images/mor.png"
+      src="@/assets/images/mor.png"
       alt=""
       style="width: 100%"
     />

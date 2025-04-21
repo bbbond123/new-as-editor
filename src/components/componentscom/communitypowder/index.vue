@@ -7,7 +7,7 @@
         <div class="lef">
           <img
             draggable="false"
-            src="../../../assets/images/powder.png"
+            src="@/assets/images/powder.png"
             alt=""
             v-if="!datas.mainImg"
           />

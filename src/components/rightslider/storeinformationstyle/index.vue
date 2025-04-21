@@ -15,7 +15,7 @@
       <img
         draggable="false"
         v-if="!datas.bakcgroundImg"
-        src="../../../assets/images/backimg.png"
+        src="@/assets/images/backimg.png"
         alt=""
       />
       <img draggable="false" v-else :src="datas.bakcgroundImg" alt="" />
@@ -31,7 +31,7 @@
       <img
         draggable="false"
         v-if="!datas.headPortrait"
-        src="../../../assets/images/headerimg.png"
+        src="@/assets/images/headerimg.png"
         alt=""
       />
       <img draggable="false" v-else :src="datas.headPortrait" alt="" />

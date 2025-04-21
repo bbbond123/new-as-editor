@@ -2,7 +2,7 @@
   <div class="richtext" :style="{ background: datas.backColor }">
     <img
       draggable="false"
-      src="../../../assets/images/fwb.png"
+      src="@/assets/images/fwb.png"
       alt=""
       v-if="!datas.myValue.length"
     />

@@ -237,7 +237,7 @@
           <img
             draggable="false"
             v-if="!item.src"
-            src="../../../assets/images/add.png"
+            src="@/assets/images/add.png"
             style="border: 1px solid #e5e5e5"
             alt=""
           />

@@ -25,7 +25,7 @@
       >
         <!-- 图片 -->
         <img
-          src="../../../assets/images/imgs.png"
+          src="@/assets/images/imgs.png"
           alt="默认图片"
           v-show="datas.navigationType === 0"
           draggable="false"
