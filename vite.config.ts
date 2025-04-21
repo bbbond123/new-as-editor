@@ -35,20 +35,20 @@ export default defineConfig({
       dts: fileURLToPath(new URL("./types/components.d.ts", import.meta.url)),
       resolvers: [
         ElementPlusResolver(),
-        IconsResolver({
-          enabledCollections: ["ep"], // 重点
-        }),
+        // IconsResolver({
+        //   enabledCollections: ["ep"], // 重点
+        // }),
       ],
     }),
   ],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
-      iconfont: path.resolve(__dirname, "./src/assets/iconfont"),
-      components: path.resolve(__dirname, "./src/components"),
-      css: path.resolve(__dirname, "./src/assets/css"),
-      img: path.resolve(__dirname, "./src/assets/images"),
-      utils: path.resolve(__dirname, "./src/utils"),
+      // iconfont: path.resolve(__dirname, "./src/assets/iconfont"),
+      // components: path.resolve(__dirname, "./src/components"),
+      // css: path.resolve(__dirname, "./src/assets/css"),
+      // img: path.resolve(__dirname, "./src/assets/images"),
+      // utils: path.resolve(__dirname, "./src/utils"),
     },
   },
 });

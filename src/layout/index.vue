@@ -1,31 +1,15 @@
 <template>
-  <div class="layout">
-    <section class="subject">
-      <!-- 侧边栏 -->
-      <div class="side-bar">
-        <!-- 选择项 -->
-        <div class="slider">
-          <!-- 图标 -->
-          <i class="iconfont icon-zhuangxiu"></i>
-          <!-- 文字提示 -->
-          <span>装修</span>
-        </div>
-      </div>
-
-      <!-- 子路由 -->
-      <router-view v-slot="{ Component }">
-        <transition name="layoutFade">
-          <component :is="Component" />
-        </transition>
-      </router-view>
-    </section>
-  </div>
+  <router-view v-slot="{ Component }">
+    <transition name="layoutFade">
+      <component :is="Component" />
+    </transition>
+  </router-view>
 </template>
 
 <script>
 export default {
-  name: 'layout',
-}
+  name: "layout",
+};
 </script>
 
 <style lang="less" scoped>
