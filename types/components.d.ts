@@ -77,6 +77,7 @@ declare module '@vue/runtime-core' {
     Suspensionstyle: typeof import('./../src/components/rightslider/suspensionstyle/index.vue')['default']
     Tabbar: typeof import('./../src/components/componentscom/tabbar/index.vue')['default']
     TabBar: typeof import('./../src/components/componentscom/tabBar/index.vue')['default']
+    Tabbarstyle: typeof import('./../src/components/rightslider/tabbarstyle/index.vue')['default']
     TabBarStyle: typeof import('./../src/components/rightslider/tabBarStyle/index.vue')['default']
     UploadCommodity: typeof import('./../src/components/uploadCommodity/index.vue')['default']
     UploadImg: typeof import('./../src/components/uploadImg/index.vue')['default']
