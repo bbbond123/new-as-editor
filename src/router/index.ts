@@ -15,6 +15,11 @@ const routes = [
         },
       ],
     },
+    {
+      path: "/webVisionTemplate",
+      name: 'webVisionTemplate',
+      component: () => import('@/layout/index.vue'),
+    }
   ]
   
   const router = createRouter({

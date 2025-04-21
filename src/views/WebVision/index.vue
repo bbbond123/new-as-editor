@@ -179,16 +179,16 @@ const datas = reactive({
 const catJson = () => {
   ElMessageBox.alert(
     `{
-          <br/>
-          "id": ${datas.id},
-          <br/>
-          "name": "${datas.pageSetup.name}",
-          <br/>
-          "templateJson": '${JSON.stringify(datas.pageSetup)}',
-          <br/>
-          "component": '${JSON.stringify(datas.pageComponents)}',
-          <br/>
-        }`,
+            <br/>
+            "id": ${datas.id},
+            <br/>
+            "name": "${datas.pageSetup.name}",
+            <br/>
+            "templateJson": '${JSON.stringify(datas.pageSetup)}',
+            <br/>
+            "component": '${JSON.stringify(datas.pageComponents)}',
+            <br/>
+          }`,
     "查看JSON",
     {
       confirmButtonText: "确定",
