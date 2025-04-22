@@ -24,6 +24,6 @@ import Utils from '@/utils'
 app.config.globalProperties.$utils = Utils
 
 // 注册全局过滤器/时间戳转换日期
-// import globalFilter from '@/utils/filter'
+// import globalFilter from '@/views/WebVision/const/filter'
 
 
