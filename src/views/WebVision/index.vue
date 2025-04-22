@@ -121,40 +121,32 @@
                 <span>站点设置</span>
               </span>
             </template>
-            <decorate
+            <!-- <decorate
               :datas="currentproperties"
               @componenmanagement="onChangePageComponent"
-            />
+            /> -->
           </el-tab-pane>
-          <el-tab-pane name="componenmanagement">
+          <el-tab-pane name="list">
             <template #label>
               <span class="custom-tabs-label">
                 <el-icon><ScaleToOriginal /></el-icon>
                 <span>组件管理</span>
               </span>
             </template>
-            <!-- <componenmanagement
-              :datas="currentproperties"
-              @componenmanagement="onChangePageComponent"
-            /> -->
           </el-tab-pane>
-          <el-tab-pane
-            label="组件设置详情"
-            name="detail"
-            :disabled="rightcom === 'none' || rightcom === 'componenmanagement'"
-          >
+          <el-tab-pane label="组件设置详情" name="detail">
             <template #label>
               <span class="custom-tabs-label">
                 <el-icon><Edit /></el-icon>
                 <span>组件设置详情</span>
               </span>
             </template>
-            <component
-              :is="rightcom"
-              :datas="currentproperties"
-              @componenmanagement="onChangePageComponent"
-            />
           </el-tab-pane>
+          <component
+            :is="rightcom"
+            :datas="currentproperties"
+            @componenmanagement="onChangePageComponent"
+          />
 
           <!-- <div class="decorateAll"> -->
           <!-- 页面设置 -->
@@ -236,6 +228,7 @@ const unActiveComponent = (event: Event) => {
     res.active = false;
   });
   choose.rightcom = "none"; //  \ componenmanagement \ 具体组件名称
+  choose.currCompName = "";
 };
 /**
  * 选择组件
@@ -246,6 +239,8 @@ const activeComponent = (res: PageComponent, index: number) => {
   choose.index = index;
 
   choose.tab = "detail";
+
+  choose.currCompName = res.style!;
   // website
   // componenmanagement
   // components
@@ -294,13 +289,17 @@ const deleteObj = (index: number) => {
 const onTabChange = (val: string) => {
   switch (val) {
     case "website":
-      choose.tab = "website";
-      // choose.rightcom = "decorate";
+      // choose.tab = "website";
+      choose.rightcom = "decorate";
+
       break;
-    case "componenmanagement":
-      // choose.rightcom = "componenmanagement";
+    case "list":
+      // choose.currCompName = "componenmanagement";
+      choose.rightcom = "componenmanagement";
       break;
-    case "component":
+    case "detail":
+      // choose.currCompName =
+      choose.rightcom = choose.currCompName;
       break;
   }
 };
@@ -482,7 +481,8 @@ watch(
 );
 
 const { id, pageSetup, pageComponents } = toRefs(datas);
-const { deleShow, tab, rightcom, currentproperties, pointer } = toRefs(choose);
+const { deleShow, tab, rightcom, currCompName, currentproperties, pointer } =
+  toRefs(choose);
 </script>
 
 <style lang="less" scoped>

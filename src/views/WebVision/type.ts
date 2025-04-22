@@ -35,12 +35,13 @@ export interface Choose {
   deleShow: boolean;
   index: number;
   /**
-   * 站点 website, 
-   * 排列 list, 
+   * 模版 template
+   * 站点 website,
+   * 排列 list,
    * 详情 detail
-   */ 
-  tab: string; 
-  currCompName: string // 组件名称
+   */
+  tab: string;
+  currCompName: string; // 组件名称
   rightcom: string; // 组件名称
   currentproperties: unknown;
   offsetY: number;
