@@ -119,6 +119,7 @@ import componentProperties from "@/views/WebVision/const/componentProperties"; /
 import { reactive, watch, toRefs } from "vue";
 import { ElMessage } from "element-plus";
 import vuedraggable from "vuedraggable"; //拖拽组件
+import headerTop from '@/views/WebVision/components/headerTop/index.vue'
 
 // 页面数据
 const datas = reactive({
