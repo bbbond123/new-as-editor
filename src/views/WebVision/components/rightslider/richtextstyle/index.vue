@@ -25,8 +25,7 @@
 </template>
 
 <script>
-import { uploadCOS } from "@/utils/upload";
-
+import { uploadCOS } from "@/views/WebVision/const/upload";
 // TinyMCE
 import 'tinymce/tinymce' // <---- MUST COME FIRST
 import 'tinymce/icons/default/icons'

@@ -149,7 +149,7 @@
 
 <script setup lang="ts">
 import utils from "@/utils/index"; // 方法类
-import componentProperties from "@/utils/componentProperties"; // 组件数据
+import componentProperties from "@/views/WebVision/const/componentProperties";  // 组件数据
 import FileSaver from "file-saver"; // 导出JSON
 import { reactive, watch, toRefs, inject } from "vue";
 import { ElMessageBox, ElMessage } from "element-plus";

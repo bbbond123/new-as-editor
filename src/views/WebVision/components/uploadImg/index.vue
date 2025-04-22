@@ -59,7 +59,7 @@
 <script>
 import { reactive, toRefs, computed } from 'vue'
 import { ElMessageBox, ElMessage } from 'element-plus'
-import { uploadCOS } from '@/utils/upload'
+import { uploadCOS } from "@/views/WebVision/const/upload"
 
 export default {
   name: 'uploadImg',
