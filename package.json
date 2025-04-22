@@ -16,6 +16,7 @@
     "core-js": "^3.21.0",
     "cos-js-sdk-v5": "^1.8.7",
     "element-plus": "^2.9.8",
+    "@element-plus/icons-vue": "^2.1.0",
     "file-saver": "2.0.5",
     "html2canvas": "1.0.0-alpha.9",
     "less": "^4.3.0",

@@ -153,7 +153,7 @@ import FileSaver from "file-saver"; // 导出JSON
 import { reactive, watch, toRefs, inject } from "vue";
 import { ElMessageBox, ElMessage } from "element-plus";
 import vuedraggable from "vuedraggable"; //拖拽组件
-import realTimeView from '@/views/WebVision/components/realTimeView/index.vue'
+import realTimeView from "@/views/WebVision/components/realTimeView/index.vue";
 
 // 是否显示预览
 const realTimeViewData = reactive({ show: false });
@@ -222,7 +222,6 @@ const importJSON = () => {
     // this.result为读取到的json字符串，需转成json对象
     let ImportJSON = JSON.parse(this.result);
     // 检测是否导入成功
-    console.log(ImportJSON, "-----------------导入成功");
     // 导入JSON数据
     _this.id = ImportJSON.id;
     _this.pageSetup = JSON.parse(ImportJSON.templateJson);
@@ -433,36 +432,6 @@ const drop = (event: any) => {
     componentProperties.get(event.dataTransfer.getData("componentName"))
   );
 
-  /* 查询是否只能存在一个的组件且在第一个 */
-  let someOne = datas.pageComponents.some((item, index) => {
-    return (
-      item.component === "placementarea" &&
-      index === 0 &&
-      choose.onlyOne.includes(data.type)
-    );
-  });
-  if (someOne) {
-    ElMessage.info("固定位置的组件(如: 底部导航、悬浮)不能放在第一个!");
-    /* 删除提示组件 */
-    dragleaves();
-    return;
-  }
-
-  /* 查询是否只能存在一个的组件 */
-  let someResult = datas.pageComponents.some((item) => {
-    console.log(item.component, "--------------item.component");
-    return (
-      choose.onlyOne.includes(item.type) &&
-      item.component === event.dataTransfer.getData("componentName")
-    );
-  });
-  if (someResult) {
-    ElMessage.info("当前组件只能添加一个!");
-    /* 删除提示组件 */
-    dragleaves();
-    return;
-  }
-
   /* 替换 */
   datas.pageComponents.forEach((res, index) => {
     /* 修改选中 */
@@ -476,13 +445,6 @@ const drop = (event: any) => {
   choose.rightcom = data.style;
   /* 丢样式 */
   choose.currentproperties = data.setStyle;
-
-  console.log(
-    data,
-    choose.rightcom,
-    choose.currentproperties,
-    "----------components data"
-  );
 };
 
 /**

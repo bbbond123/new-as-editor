@@ -6,8 +6,13 @@
       <sliderassembly :pointer="pointer" />
 
       <!-- 手机 -->
-      <div class="phone">
-        <section class="phoneAll" ref="imageTofile" id="imageTofile">
+      <div class="phone" @click="unActiveComponent">
+        <section
+          class="phoneAll"
+          ref="imageTofile"
+          id="imageTofile"
+          @click="onStopPropagation"
+        >
           <img src="@/assets/images/phoneTop.png" alt="" class="statusBar" />
           <!-- 头部导航 -->
           <headerTop :pageSetup="pageSetup" @click="headTop" />
@@ -20,7 +25,7 @@
             }"
             @drop="drop($event)"
             @dragover="allowDrop($event)"
-            @dragleave="dragleaves($event)"
+            @dragleave="dragleaves()"
           >
             <!-- 动态组件 -->
             <vuedraggable
@@ -93,23 +98,81 @@
         </span>
       </div>
       <!-- 右侧工具栏 -->
-      <!-- <el-tabs type="border-card">
-        <el-tab-pane label="站点设置"></el-tab-pane>
-        <el-tab-pane label="组件排版"></el-tab-pane>
-        <el-tab-pane label="组件设置"></el-tab-pane>
-      </el-tabs> -->
-      <div class="decorateAll">
-        <!-- 页面设置 -->
-        <!-- <transition name="decorateAnima"> -->
-        <!-- 动态组件 -->
-        <component
-          :is="rightcom"
-          :datas="currentproperties"
-          @componenmanagement="componenmanagement"
-        />
-        <!-- </transition> -->
-      </div>
+      <section class="component-settings">
+        <el-tabs
+          class="custom-tabs"
+          type="border-card"
+          v-model="tab"
+          @tab-change="onTabChange"
+          :stretch="true"
+        >
+          <!-- 1 组件设置  -->
+          <!-- <el-tab-pane label="其他设置" name="comp"></el-tab-pane>
+          <el-tab-pane label="组件设置" name="detail"></el-tab-pane> -->
+          <!-- 2 模版设置 -->
+          <!-- <el-tab-pane label="模版设置" name="template"></el-tab-pane>
+        <el-tab-pane label="组件排版" name="componenmanagement"></el-tab-pane>
+        <el-tab-pane label="组件设置" name="detail"></el-tab-pane> -->
+          <!-- 3 站点设置 -->
+          <el-tab-pane name="website">
+            <template #label>
+              <span class="custom-tabs-label">
+                <el-icon><SetUp /></el-icon>
+                <span>站点设置</span>
+              </span>
+            </template>
+            <decorate
+              :datas="currentproperties"
+              @componenmanagement="onChangePageComponent"
+            />
+          </el-tab-pane>
+          <el-tab-pane name="componenmanagement">
+            <template #label>
+              <span class="custom-tabs-label">
+                <el-icon><ScaleToOriginal /></el-icon>
+                <span>组件管理</span>
+              </span>
+            </template>
+            <!-- <componenmanagement
+              :datas="currentproperties"
+              @componenmanagement="onChangePageComponent"
+            /> -->
+          </el-tab-pane>
+          <el-tab-pane
+            label="组件设置详情"
+            name="detail"
+            :disabled="rightcom === 'none' || rightcom === 'componenmanagement'"
+          >
+            <template #label>
+              <span class="custom-tabs-label">
+                <el-icon><Edit /></el-icon>
+                <span>组件设置详情</span>
+              </span>
+            </template>
+            <component
+              :is="rightcom"
+              :datas="currentproperties"
+              @componenmanagement="onChangePageComponent"
+            />
+          </el-tab-pane>
+
+          <!-- <div class="decorateAll"> -->
+          <!-- 页面设置 -->
+          <!-- <transition name="decorateAnima"> -->
+          <!-- 动态组件 -->
+          <!-- <component
+            :is="rightcom"
+            :datas="currentproperties"
+            @componenmanagement="componenmanagement"
+          /> -->
+          <!-- </transition> -->
+          <!-- </div> -->
+        </el-tabs>
+      </section>
     </section>
+    <div class="debugger-text">
+      {{ choose }}
+    </div>
   </div>
 </template>
 
@@ -118,11 +181,16 @@ import utils from "@/views/WebVision/const/index";
 import componentProperties from "@/views/WebVision/const/componentProperties"; // 组件数据
 import { reactive, watch, toRefs } from "vue";
 import { ElMessage } from "element-plus";
+import { SetUp, ScaleToOriginal, Edit } from "@element-plus/icons-vue";
 import vuedraggable from "vuedraggable"; //拖拽组件
-import headerTop from '@/views/WebVision/components/headerTop/index.vue'
+import headerTop from "@/views/WebVision/components/headerTop/index.vue";
+import type { Choose, IPageData, PageComponent } from "./type";
+import { iconPropType } from "element-plus/es/utils";
+import { stopPropagation } from "vant/lib/utils";
+import componenmanagement from '@/views/WebVision/components/rightslider/componenmanagement/index.vue'
 
 // 页面数据
-const datas = reactive({
+const datas = reactive<IPageData>({
   id: null, //当前页面id
   demo: "自定义内容",
   pageSetup: {
@@ -143,14 +211,15 @@ const datas = reactive({
  *
  * @param {Object} res 组件切换后返回的位置
  */
-const componenmanagement = (res) => {
+const onChangePageComponent = (res: any) => {
   datas.pageComponents = res;
 };
 
 // 选择组件数据
-const choose = reactive({
+const choose = reactive<Choose>({
   deleShow: true, // 删除标签显示
-  index: "", // 当前选中的index
+  index: -1, // 当前选中的index
+  tab: "", // 右侧tab 切换  components sort components
   rightcom: "decorate", // 右侧组件切换
   currentproperties: datas.pageSetup, // 当前属性  默认：页面设置
   offsetY: 0, //记录上一次距离父元素高度
@@ -158,14 +227,30 @@ const choose = reactive({
   pointer: { show: false }, // 穿透
 });
 
+const unActiveComponent = (event: Event) => {
+  // 站点的话
+  choose.tab = "website";
+  choose.index = -1;
+  datas.pageComponents.forEach((res) => {
+    res.active = false;
+  });
+  choose.rightcom = "none"; //  \ componenmanagement \ 具体组件名称
+};
 /**
  * 选择组件
  *
  * @param {Object} res 当前组件对象
  */
-const activeComponent = (res, index) => {
+const activeComponent = (res: PageComponent, index: number) => {
   choose.index = index;
+
+  choose.tab = "detail";
+  // website
+  // componenmanagement
+  // components
   /* 切换组件 */
+
+  // @ts-ignore
   choose.rightcom = res.style;
   /* 丢样式 */
   choose.currentproperties = res.setStyle;
@@ -190,23 +275,36 @@ const headTop = () => {
   });
 };
 
+const onStopPropagation = (event: Event) => {
+  event.stopPropagation();
+};
+
 /**
  * 删除组件
  *
  * @param {Number} index 当前组件index
  */
-const deleteObj = (index) => {
+const deleteObj = (index: number) => {
   datas.pageComponents.splice(index, 1);
   if (choose.index === index) choose.rightcom = "decorate";
   if (index < choose.index) choose.index = choose.index - 1;
 };
 
-/**
- * 当将元素或文本选择拖动到有效放置目标（每几百毫秒）上时，会触发此事件
- *
- * @param {Object} event event对象
- */
-const allowDrop = (event) => {
+const onTabChange = (val: string) => {
+  switch (val) {
+    case "website":
+      choose.tab = 'website'
+      // choose.rightcom = "decorate";
+      break;
+    case "componenmanagement":
+      // choose.rightcom = "componenmanagement";
+      break;
+    case "component":
+      break;
+  }
+};
+
+const allowDrop = (event: DragEvent) => {
   //阻止浏览器的默认事件
   event.preventDefault();
 
@@ -214,11 +312,15 @@ const allowDrop = (event) => {
   let eventoffset = event.offsetY;
 
   /* 如果没有移动不触发事件减少损耗 */
-  if (choose.offsetY === eventoffset) return;
-  else choose.offsetY = eventoffset;
+  if (choose.offsetY === eventoffset) {
+    return;
+  } else {
+    choose.offsetY = eventoffset;
+  }
 
   /* 获取组件 */
-  const childrenObject = event.target.children[0];
+  //@ts-ignore
+  const childrenObject = event?.target?.children && event?.target?.children[0];
 
   // 一个以上的组件计算
   if (datas.pageComponents.length) {
@@ -326,51 +428,11 @@ const allowDrop = (event) => {
   }
 };
 
-/**
- * 当在有效放置目标上放置元素或选择文本时触发此事件
- *
- * @param {Object} event event对象
- */
 const drop = (event: any) => {
-  console.log(
-    'event.dataTransfer.getData("componentName")',
-    event.dataTransfer.getData("componentName")
-  );
   /* 获取数据 */
   let data = utils.deepClone(
     componentProperties.get(event.dataTransfer.getData("componentName"))
   );
-
-  /* 查询是否只能存在一个的组件且在第一个 */
-  let someOne = datas.pageComponents.some((item, index) => {
-    return (
-      item.component === "placementarea" &&
-      index === 0 &&
-      choose.onlyOne.includes(data.type)
-    );
-  });
-  if (someOne) {
-    ElMessage.info("固定位置的组件(如: 底部导航、悬浮)不能放在第一个!");
-    /* 删除提示组件 */
-    dragleaves();
-    return;
-  }
-
-  /* 查询是否只能存在一个的组件 */
-  let someResult = datas.pageComponents.some((item) => {
-    console.log(item.component, "--------------item.component");
-    return (
-      choose.onlyOne.includes(item.type) &&
-      item.component === event.dataTransfer.getData("componentName")
-    );
-  });
-  if (someResult) {
-    ElMessage.info("当前组件只能添加一个!");
-    /* 删除提示组件 */
-    dragleaves();
-    return;
-  }
-
   /* 替换 */
   datas.pageComponents.forEach((res, index) => {
     /* 修改选中 */
@@ -385,19 +447,9 @@ const drop = (event: any) => {
   /* 丢样式 */
   choose.currentproperties = data.setStyle;
 
-  console.log(
-    data,
-    choose.rightcom,
-    choose.currentproperties,
-    "----------components data"
-  );
+  choose.tab = "detail";
 };
 
-/**
- * 当拖动的元素或文本选择离开有效的放置目标时，会触发此事件
- *
- * @param {Object} event event对象
- */
 const dragleaves = () => {
   /* 删除提示组件 */
   datas.pageComponents = datas.pageComponents.filter(
@@ -429,7 +481,7 @@ watch(
 );
 
 const { id, pageSetup, pageComponents } = toRefs(datas);
-const { deleShow, rightcom, currentproperties, pointer } = toRefs(choose);
+const { deleShow, tab, rightcom, currentproperties, pointer } = toRefs(choose);
 </script>
 
 <style lang="less" scoped>
@@ -559,13 +611,13 @@ const { deleShow, rightcom, currentproperties, pointer } = toRefs(choose);
 
   /* 右侧工具栏 */
   .decorateAll {
-    width: 376px;
-    height: 100%;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    position: relative;
-    padding: 0 12px;
-    background: #fff;
+    // width: 376px;
+    // height: 100%;
+    // overflow-y: scroll;
+    // overflow-x: hidden;
+    // position: relative;
+    // padding: 0 12px;
+    // background: #fff;
     &::-webkit-scrollbar {
       width: 1px;
     }
@@ -578,8 +630,8 @@ const { deleShow, rightcom, currentproperties, pointer } = toRefs(choose);
   .decorateTab {
     position: fixed;
     display: flex;
-    right: 380px;
-    top: 115px;
+    right: 50%;
+    top: 0;
     flex-direction: column;
     span {
       background-color: #fff;
@@ -620,5 +672,31 @@ const { deleShow, rightcom, currentproperties, pointer } = toRefs(choose);
 .decorateAnima-leave-to {
   transform: translate(8px, 8px);
   opacity: 0;
+}
+
+.debugger-text {
+  position: absolute;
+  z-index: 999;
+  padding: 30px;
+  bottom: 40px;
+  background-color: #155bd4;
+  color: white;
+  font-size: 20px;
+}
+
+.component-settings {
+  min-width: 450px;
+}
+
+.custom-tabs {
+  height: 100%;
+}
+
+.custom-tabs-label .el-icon {
+  vertical-align: middle;
+}
+.custom-tabs-label span {
+  vertical-align: middle;
+  margin-left: 4px;
 }
 </style>
