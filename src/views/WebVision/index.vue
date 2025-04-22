@@ -74,7 +74,7 @@
       </div>
 
       <!-- 页面设置tab -->
-      <div class="decorateTab">
+      <!-- <div class="decorateTab">
         <span
           :class="rightcom === 'decorate' ? 'active' : ''"
           @click="rightcom = 'decorate'"
@@ -96,7 +96,7 @@
           <i class="iconfont icon-zujian" />
           组件设置
         </span>
-      </div>
+      </div> -->
       <!-- 右侧工具栏 -->
       <section class="component-settings">
         <el-tabs
@@ -141,8 +141,10 @@
                 <span>组件设置详情</span>
               </span>
             </template>
+            <div v-if="!rightcom">请选中一个组件</div>
           </el-tab-pane>
           <component
+            v-if="!rightcom"
             :is="rightcom"
             :datas="currentproperties"
             @componenmanagement="onChangePageComponent"
@@ -222,7 +224,7 @@ const choose = reactive<Choose>({
 
 const unActiveComponent = (event: Event) => {
   // 站点的话
-  choose.tab = "website";
+  choose.tab = "";
   choose.index = -1;
   datas.pageComponents.forEach((res) => {
     res.active = false;
@@ -603,7 +605,7 @@ const { deleShow, tab, rightcom, currCompName, currentproperties, pointer } =
         .componentsClass {
           border: 2px solid #fff;
           &:hover {
-            border: 1px dashed #155bd4;
+            border: 2px dashed #155bd4;
           }
         }
       }
