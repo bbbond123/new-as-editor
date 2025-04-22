@@ -92,18 +92,22 @@
           组件设置
         </span>
       </div>
-
       <!-- 右侧工具栏 -->
+      <!-- <el-tabs type="border-card">
+        <el-tab-pane label="站点设置"></el-tab-pane>
+        <el-tab-pane label="组件排版"></el-tab-pane>
+        <el-tab-pane label="组件设置"></el-tab-pane>
+      </el-tabs> -->
       <div class="decorateAll">
         <!-- 页面设置 -->
-        <transition name="decorateAnima">
-          <!-- 动态组件 -->
-          <component
-            :is="rightcom"
-            :datas="currentproperties"
-            @componenmanagement="componenmanagement"
-          />
-        </transition>
+        <!-- <transition name="decorateAnima"> -->
+        <!-- 动态组件 -->
+        <component
+          :is="rightcom"
+          :datas="currentproperties"
+          @componenmanagement="componenmanagement"
+        />
+        <!-- </transition> -->
       </div>
     </section>
   </div>
