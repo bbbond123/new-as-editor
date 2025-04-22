@@ -146,12 +146,14 @@
 </template>
 
 <script setup lang="ts">
-import utils from "@/utils/index"; // 方法类
+// import utils from "@/utils/index"; // 方法类
+import utils from "@/views/WebVision/const/index";
 import componentProperties from "@/views/WebVision/const/componentProperties"; // 组件数据
 import FileSaver from "file-saver"; // 导出JSON
 import { reactive, watch, toRefs, inject } from "vue";
 import { ElMessageBox, ElMessage } from "element-plus";
 import vuedraggable from "vuedraggable"; //拖拽组件
+import realTimeView from '@/views/WebVision/components/realTimeView/index.vue'
 
 // 是否显示预览
 const realTimeViewData = reactive({ show: false });
