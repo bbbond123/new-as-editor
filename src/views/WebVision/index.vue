@@ -1,7 +1,5 @@
 <template>
   <div class="home">
-    <!-- 按钮集合 -->
-    <!-- <headerExport @onPreview="onPreview"/> -->
     <!-- 装修操作 -->
     <section class="operation">
       <!-- 组件 -->
@@ -108,15 +106,6 @@
         </transition>
       </div>
     </section>
-    <!-- <realTimeView
-      :datas="realTimeViewData"
-      :val="{
-        id,
-        name: pageSetup.name,
-        templateJson: JSON.stringify(pageSetup),
-        component: JSON.stringify(pageComponents),
-      }"
-    /> -->
   </div>
 </template>
 
@@ -126,14 +115,6 @@ import componentProperties from "@/views/WebVision/const/componentProperties"; /
 import { reactive, watch, toRefs } from "vue";
 import { ElMessage } from "element-plus";
 import vuedraggable from "vuedraggable"; //拖拽组件
-
-// 注释掉预览功能
-// // 是否显示预览
-// const realTimeViewData = reactive({ show: false });
-
-// const onPreview = () => {
-//   realTimeViewData.show = true;
-// };
 
 // 页面数据
 const datas = reactive({
@@ -503,7 +484,7 @@ const { deleShow, rightcom, currentproperties, pointer } = toRefs(choose);
   /* 操作主体 */
   .operation {
     width: 100%;
-    height: 92%;
+    height: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;

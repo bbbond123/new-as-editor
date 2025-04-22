@@ -87,6 +87,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    user-select: none;
     padding: 0 10px;
     font-size: 14px;
     cursor: all-scroll;
@@ -102,6 +103,7 @@ export default {
   .delDragitem {
     background-color: rgba(10, 42, 97, 0.2);
     cursor: no-drop;
+    user-select: none;
   }
 }
 </style>
