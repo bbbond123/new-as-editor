@@ -170,9 +170,9 @@
         </el-tabs>
       </section>
     </section>
-    <div class="debugger-text">
+    <!-- <div class="debugger-text">
       {{ choose }}
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -187,7 +187,7 @@ import headerTop from "@/views/WebVision/components/headerTop/index.vue";
 import type { Choose, IPageData, PageComponent } from "./type";
 import { iconPropType } from "element-plus/es/utils";
 import { stopPropagation } from "vant/lib/utils";
-import componenmanagement from '@/views/WebVision/components/rightslider/componenmanagement/index.vue'
+import componenmanagement from "@/views/WebVision/components/rightslider/componenmanagement/index.vue";
 
 // 页面数据
 const datas = reactive<IPageData>({
@@ -220,6 +220,7 @@ const choose = reactive<Choose>({
   deleShow: true, // 删除标签显示
   index: -1, // 当前选中的index
   tab: "", // 右侧tab 切换  components sort components
+  currCompName: "", // 当前组件名称
   rightcom: "decorate", // 右侧组件切换
   currentproperties: datas.pageSetup, // 当前属性  默认：页面设置
   offsetY: 0, //记录上一次距离父元素高度
@@ -293,7 +294,7 @@ const deleteObj = (index: number) => {
 const onTabChange = (val: string) => {
   switch (val) {
     case "website":
-      choose.tab = 'website'
+      choose.tab = "website";
       // choose.rightcom = "decorate";
       break;
     case "componenmanagement":
@@ -600,7 +601,7 @@ const { deleShow, tab, rightcom, currentproperties, pointer } = toRefs(choose);
         background-repeat: no-repeat;
         background-size: 100% 100%;
         .componentsClass {
-          border: 1px solid #fff;
+          border: 2px solid #fff;
           &:hover {
             border: 1px dashed #155bd4;
           }
