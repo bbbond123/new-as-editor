@@ -250,7 +250,7 @@
 
 <script>
 import vuedraggable from 'vuedraggable' //拖拽组件
-import uploadimg from '@/components/uploadImg/index.vue'
+import uploadimg from '@/views/WebVision/components/uploadImg/index.vue'
 
 export default {
   name: 'storenotecardstyle',

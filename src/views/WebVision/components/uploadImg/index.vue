@@ -169,7 +169,8 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import '../../assets/css/minx.less';
+@import '@/assets/css/minx.less';
+
 .uploadImg {
   // 上传弹框内容部分
   :deep(.el-dialog__body) {

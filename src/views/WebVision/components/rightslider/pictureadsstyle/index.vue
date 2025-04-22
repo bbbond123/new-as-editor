@@ -222,7 +222,7 @@
 
 <script>
 import vuedraggable from 'vuedraggable' //拖拽组件
-import uploadimg from '@/components/uploadImg/index.vue' //图片上传
+import uploadimg from '@/views/WebVision/components/uploadImg/index.vue' //图片上传
 
 export default {
   name: 'pictureadsstyle',

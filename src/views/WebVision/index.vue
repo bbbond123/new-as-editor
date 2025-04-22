@@ -9,9 +9,7 @@
           margin-left: 15px;
           cursor: pointer;
         "
-      >
-        <!-- 返回 -->
-      </p>
+      ></p>
       <div>
         <el-button @click="reloads" type="danger">重置</el-button>
         <el-button @click="realTimeViewData.show = true">预览</el-button>
