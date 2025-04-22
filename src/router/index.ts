@@ -21,8 +21,16 @@ const routes = [
     ],
   },
   {
+    path: "/webVision",
+    name: "webVision",
+    component: () => import("@/views/WebVision/index.vue"),
+    meta: {
+      keepAlive: false,
+    },
+  },
+  {
     path: "/webVisionComponent",
-    name: "/webVisionComponent",
+    name: "webVisionComponent",
     component: () => import("@/views/WebVision/page/component/index.vue"),
     meta: {
       keepAlive: false,
@@ -30,7 +38,7 @@ const routes = [
   },
   {
     path: "/webVisionTemplate",
-    name: "/webVisionTemplate",
+    name: "webVisionTemplate",
     component: () => import("@/views/WebVision/page/template/index.vue"),
     meta: {
       keepAlive: false,
@@ -38,7 +46,7 @@ const routes = [
   },
   {
     path: "/webVisionWebsite",
-    name: "/webVisionWebsite",
+    name: "webVisionWebsite",
     component: () => import("@/views/WebVision/page/website/index.vue"),
     meta: {
       keepAlive: false,
