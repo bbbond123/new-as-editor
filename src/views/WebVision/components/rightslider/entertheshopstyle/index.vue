@@ -132,9 +132,9 @@ export default {
 <style scoped lang="less">
 .entertheshopstyle {
   width: 100%;
-  position: absolute;
-  left: 0;
-  top: 0;
+  // position: absolute;
+  // left: 0;
+  // top: 0;
   padding: 0 10px 20px;
   box-sizing: border-box;
   /* 标题 */

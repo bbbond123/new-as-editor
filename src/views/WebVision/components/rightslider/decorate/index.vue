@@ -166,9 +166,9 @@ export default {
 /* 页面设置 */
 .decorate {
   width: 100%;
-  position: absolute;
-  left: 0;
-  top: 0;
+  // position: absolute;
+  // left: 0;
+  // top: 0;
   padding: 0 10px;
   box-sizing: border-box;
   h2 {

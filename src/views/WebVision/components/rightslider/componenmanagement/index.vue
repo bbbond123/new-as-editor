@@ -66,9 +66,9 @@ export default {
 /* 组件管理 */
 .componenManagement {
   width: 100%;
-  position: absolute;
-  left: 0;
-  top: 0;
+  // position: absolute;
+  // left: 0;
+  // top: 0;
   padding: 0 10px;
   box-sizing: border-box;
   /* 标题 */
