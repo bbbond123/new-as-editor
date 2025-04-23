@@ -39,13 +39,13 @@
                 <component
                   :is="element.component"
                   :datas="element.setStyle"
+                  :data-type="element.type"
+                  @click="activeComponent(element, index)"
+                  class="componentsClass"
                   :style="{
                     border:
                       element.active && deleShow ? '2px solid #155bd4' : '',
                   }"
-                  @click="activeComponent(element, index)"
-                  class="componentsClass"
-                  :data-type="element.type"
                 >
                   <template #deles>
                     <div
@@ -141,9 +141,9 @@
                 <span>组件设置详情</span>
               </span>
             </template>
-            <div v-if="!rightcom">请选中一个组件</div>
           </el-tab-pane>
           <component
+            :data-name="rightcom"
             :is="rightcom"
             :datas="currentproperties"
             @componenmanagement="onChangePageComponent"
@@ -235,9 +235,7 @@ const unActiveComponent = (event: Event) => {
  */
 const activeComponent = (res: PageComponent, index: number) => {
   choose.index = index;
-
   choose.tab = "detail";
-
   choose.currCompName = res.style!;
   // website
   // componenmanagement
@@ -297,7 +295,29 @@ const onTabChange = (val: string) => {
       break;
     case "detail":
       // choose.currCompName =
+    
+      // const currentComponent = choose.currentproperties[0];
+
+      // choose.index = index;
+      // choose.currCompName = choose.style!;
+      // // website
+      // // componenmanagement
+      // // components
+      // /* 切换组件 */
+
+      // // @ts-ignore
+      // choose.rightcom = choose.style;
+      // /* 丢样式 */
+      // choose.currentproperties = res.setStyle;
+
+      // /* 替换 */
+      // datas.pageComponents.forEach((res) => {
+      //   /* 修改选中 */
+      //   if (res.active === true) res.active = false;
+      // });
+
       choose.rightcom = choose.currCompName;
+
       break;
   }
 };
@@ -689,6 +709,20 @@ const { deleShow, tab, rightcom, currCompName, currentproperties, pointer } =
 
 .custom-tabs {
   height: 100%;
+  :deep(.el-tabs__content) {
+    overflow: auto;
+    padding: 10px;
+
+    &::-webkit-scrollbar {
+      width: 6px;
+      border-radius: 10px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: #0000007b;
+      border-radius: 10px;
+      opacity: 0.5;
+    }
+  }
 }
 
 .custom-tabs-label .el-icon {
@@ -697,5 +731,10 @@ const { deleShow, tab, rightcom, currCompName, currentproperties, pointer } =
 .custom-tabs-label span {
   vertical-align: middle;
   margin-left: 4px;
+}
+
+.component-wrapper {
+  height: 100%;
+  overflow: auto;
 }
 </style>
