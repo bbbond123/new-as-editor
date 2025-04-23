@@ -14,7 +14,6 @@ import Vant from "vant";
 
 import "./permission";
 
-// 如何后去components里面的所有组件并注册
 const modules = import.meta.glob("@/views/WebVision/components/**/*.vue", { eager: true });
 Object.entries(modules).forEach(([path, module]: any) => {
   const segments = path.split("/");
