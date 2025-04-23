@@ -25,178 +25,189 @@
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import { reactive } from "vue";
-export default {
-  name: "sliderassembly",
-  props: {
-    pointer: Object,
-  },
-  setup(props) {
-    // 侧边栏组件显示
-    // [1] 基本组件 [2] 业务组件
-    const activeNames = reactive([2]);
 
-    // 组件信息配置
-    const datas = reactive([
+// Define interfaces
+interface ComponentItem {
+  text: string;
+  type: string;
+  icon?: string;
+  vanIcon?: string;
+  name: string;
+}
+
+interface DataItem {
+  title: string;
+  comList: ComponentItem[];
+}
+
+interface Pointer {
+  show: boolean;
+}
+
+// Define props
+const props = defineProps<{
+  pointer: Pointer;
+}>();
+
+// 侧边栏组件显示
+// [1] 基本组件 [2] 业务组件
+const activeNames = reactive<number[]>([2]);
+
+// 组件信息配置
+const datas = reactive<DataItem[]>([
+  {
+    title: "基础组件",
+    comList: [
       {
-        title: "基础组件",
-        comList: [
-          {
-            text: "商品搜索",
-            type: "1-1",
-            icon: "icon-shangpinsousuo",
-            name: "commoditysearch",
-          },
-          {
-            text: "标题文本",
-            type: "1-3",
-            icon: "icon-Component-biaotiwenzi",
-            name: "captiontext",
-          },
-
-          {
-            text: "图片广告",
-            type: "1-3",
-            icon: "icon-tupianguanggao",
-            name: "pictureads",
-          },
-          {
-            text: "图文导航",
-            type: "1-4",
-            icon: "icon-icon_tupiandaohang",
-            name: "graphicnavigation",
-          },
-          {
-            text: "底部导航",
-            type: "1-5",
-            icon: "icon-daohang",
-            name: "tabbar",
-          },
-          {
-            text: "魔方",
-            type: "1-6",
-            icon: "icon-mofang",
-            name: "magiccube",
-          },
-          {
-            text: "公告",
-            type: "1-7",
-            icon: "icon-gonggao",
-            name: "notice",
-          },
-
-          {
-            text: "视频",
-            type: "1-8",
-            icon: "icon-shipin",
-            name: "videoss",
-          },
-          {
-            text: "富文本",
-            type: "1-10",
-            icon: "icon-fuwenben",
-            name: "richtext",
-          },
-          {
-            text: "辅助分割",
-            type: "1-11",
-            icon: "icon-Component-fuzhufenge",
-            name: "auxiliarysegmentation",
-          },
-
-          {
-            text: "店铺信息",
-            type: "1-12",
-            icon: "icon-dianpuxinxi",
-            name: "storeinformation",
-          },
-          {
-            text: "单元格",
-            type: "1-13",
-            icon: "icon-jinrudianpu",
-            name: "entertheshop",
-          },
-          {
-            text: "社群涨粉",
-            type: "1-14",
-            icon: "icon-kuaisuzhangfen",
-            name: "communitypowder",
-          },
-          {
-            text: "关注公众号",
-            type: "1-15",
-            icon: "icon-gongzhonghao",
-            name: "follow",
-          },
-          {
-            text: "悬浮",
-            type: "1-16",
-            icon: "icon-wangye",
-            name: "suspension",
-          },
-          {
-            text: "自定义模块",
-            type: "demo",
-            icon: "icon-zidingyimokuai",
-            name: "custommodule",
-          },
-        ],
+        text: "商品搜索",
+        type: "1-1",
+        icon: "icon-shangpinsousuo",
+        name: "commoditysearch",
       },
       {
-        title: "业务组件",
-        comList: [
-          {
-            text: "商品",
-            type: "2-1",
-            icon: "icon-goods",
-            name: "listswitching",
-          },
-          {
-            text: "文章模块",
-            type: "2-2",
-            icon: "icon-dianpubijikapian",
-            name: "storenotecard",
-          },
-          {
-            text: "表单模块",
-            type: "2-3",
-            vanIcon: "orders-o",
-            name: "investigate",
-          },
-        ],
+        text: "标题文本",
+        type: "1-3",
+        icon: "icon-Component-biaotiwenzi",
+        name: "captiontext",
       },
-    ]);
-
-    /**
-     * 当用户开始拖动元素或选择文本时触发此事件
-     *
-     * @param {Object} event event对象
-     */
-    const drag = (event) => {
-      /* 开启穿透 */
-      props.pointer.show = true;
-      /* 传递参数 */
-      event.dataTransfer.setData("componentName", event.target.dataset.name);
-    };
-
-    /**
-     * 当拖动操作结束时（释放鼠标按钮或按下退出键），会触发此事件
-     *
-     * @param {Object} event event对象
-     */
-    const dragends = () => {
-      /* 关闭穿透 */
-      props.pointer.show = false;
-    };
-
-    return {
-      activeNames,
-      datas,
-      drag,
-      dragends,
-    };
+      {
+        text: "图片广告",
+        type: "1-3",
+        icon: "icon-tupianguanggao",
+        name: "pictureads",
+      },
+      {
+        text: "图文导航",
+        type: "1-4",
+        icon: "icon-icon_tupiandaohang",
+        name: "graphicnavigation",
+      },
+      {
+        text: "底部导航",
+        type: "1-5",
+        icon: "icon-daohang",
+        name: "tabbar",
+      },
+      {
+        text: "魔方",
+        type: "1-6",
+        icon: "icon-mofang",
+        name: "magiccube",
+      },
+      {
+        text: "公告",
+        type: "1-7",
+        icon: "icon-gonggao",
+        name: "notice",
+      },
+      {
+        text: "视频",
+        type: "1-8",
+        icon: "icon-shipin",
+        name: "videoss",
+      },
+      {
+        text: "富文本",
+        type: "1-10",
+        icon: "icon-fuwenben",
+        name: "richtext",
+      },
+      {
+        text: "辅助分割",
+        type: "1-11",
+        icon: "icon-Component-fuzhufenge",
+        name: "auxiliarysegmentation",
+      },
+      {
+        text: "店铺信息",
+        type: "1-12",
+        icon: "icon-dianpuxinxi",
+        name: "storeinformation",
+      },
+      {
+        text: "单元格",
+        type: "1-13",
+        icon: "icon-jinrudianpu",
+        name: "entertheshop",
+      },
+      {
+        text: "社群涨粉",
+        type: "1-14",
+        icon: "icon-kuaisuzhangfen",
+        name: "communitypowder",
+      },
+      {
+        text: "关注公众号",
+        type: "1-15",
+        icon: "icon-gongzhonghao",
+        name: "follow",
+      },
+      {
+        text: "悬浮",
+        type: "1-16",
+        icon: "icon-wangye",
+        name: "suspension",
+      },
+      {
+        text: "自定义模块",
+        type: "demo",
+        icon: "icon-zidingyimokuai",
+        name: "custommodule",
+      },
+    ],
   },
+  {
+    title: "业务组件",
+    comList: [
+      {
+        text: "商品",
+        type: "2-1",
+        icon: "icon-goods",
+        name: "listswitching",
+      },
+      {
+        text: "文章模块",
+        type: "2-2",
+        icon: "icon-dianpubijikapian",
+        name: "storenotecard",
+      },
+      {
+        text: "表单模块",
+        type: "2-3",
+        vanIcon: "orders-o",
+        name: "investigate",
+      },
+    ],
+  },
+]);
+
+/**
+ * 当用户开始拖动元素或选择文本时触发此事件
+ *
+ * @param event DragEvent对象
+ */
+const drag = (event: DragEvent): void => {
+  if (event.dataTransfer) {
+    /* 开启穿透 */
+    props.pointer.show = true;
+    /* 传递参数 */
+    event.dataTransfer.setData(
+      "componentName",
+      (event.currentTarget as HTMLElement).dataset.name || ""
+    );
+  }
+};
+
+/**
+ * 当拖动操作结束时（释放鼠标按钮或按下退出键），会触发此事件
+ *
+ * @param event DragEvent对象
+ */
+const dragends = (event: DragEvent): void => {
+  /* 关闭穿透 */
+  props.pointer.show = false;
 };
 </script>
 
