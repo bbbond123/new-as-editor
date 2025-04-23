@@ -144,7 +144,6 @@
             <div v-if="!rightcom">请选中一个组件</div>
           </el-tab-pane>
           <component
-            v-if="!rightcom"
             :is="rightcom"
             :datas="currentproperties"
             @componenmanagement="onChangePageComponent"
@@ -174,14 +173,10 @@
 import utils from "@/views/WebVision/const/index";
 import componentProperties from "@/views/WebVision/const/componentProperties"; // 组件数据
 import { reactive, watch, toRefs } from "vue";
-import { ElMessage } from "element-plus";
 import { SetUp, ScaleToOriginal, Edit } from "@element-plus/icons-vue";
 import vuedraggable from "vuedraggable"; //拖拽组件
 import headerTop from "@/views/WebVision/components/headerTop/index.vue";
 import type { Choose, IPageData, PageComponent } from "./type";
-import { iconPropType } from "element-plus/es/utils";
-import { stopPropagation } from "vant/lib/utils";
-import componenmanagement from "@/views/WebVision/components/rightslider/componenmanagement/index.vue";
 
 // 页面数据
 const datas = reactive<IPageData>({
@@ -296,7 +291,7 @@ const onTabChange = (val: string) => {
 
       break;
     case "list":
-      // choose.currCompName = "componenmanagement";
+      choose.currCompName = "componenmanagement";
       choose.rightcom = "componenmanagement";
       break;
     case "detail":
