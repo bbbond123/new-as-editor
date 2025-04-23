@@ -20,7 +20,7 @@ import httpApi from '@/api/api'
 app.config.globalProperties.$httpApi = httpApi
 
 // 挂载 uitls
-import Utils from '@/utils'
+import Utils from '@/views/WebVision/const'
 app.config.globalProperties.$utils = Utils
 
 // 注册全局过滤器/时间戳转换日期

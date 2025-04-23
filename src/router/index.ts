@@ -28,30 +28,30 @@ const routes = [
       keepAlive: false,
     },
   },
-  {
-    path: "/webVisionComponent",
-    name: "webVisionComponent",
-    component: () => import("@/views/WebVision/page/component/index.vue"),
-    meta: {
-      keepAlive: false,
-    },
-  },
-  {
-    path: "/webVisionTemplate",
-    name: "webVisionTemplate",
-    component: () => import("@/views/WebVision/page/template/index.vue"),
-    meta: {
-      keepAlive: false,
-    },
-  },
-  {
-    path: "/webVisionWebsite",
-    name: "webVisionWebsite",
-    component: () => import("@/views/WebVision/page/website/index.vue"),
-    meta: {
-      keepAlive: false,
-    },
-  },
+  // {
+  //   path: "/webVisionComponent",
+  //   name: "webVisionComponent",
+  //   component: () => import("@/views/WebVision/page/component/index.vue"),
+  //   meta: {
+  //     keepAlive: false,
+  //   },
+  // },
+  // {
+  //   path: "/webVisionTemplate",
+  //   name: "webVisionTemplate",
+  //   component: () => import("@/views/WebVision/page/template/index.vue"),
+  //   meta: {
+  //     keepAlive: false,
+  //   },
+  // },
+  // {
+  //   path: "/webVisionWebsite",
+  //   name: "webVisionWebsite",
+  //   component: () => import("@/views/WebVision/page/website/index.vue"),
+  //   meta: {
+  //     keepAlive: false,
+  //   },
+  // },
 ];
 
 const router = createRouter({
