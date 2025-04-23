@@ -176,6 +176,7 @@ import { reactive, watch, toRefs } from "vue";
 import { SetUp, ScaleToOriginal, Edit } from "@element-plus/icons-vue";
 import vuedraggable from "vuedraggable"; //拖拽组件
 import headerTop from "@/views/WebVision/components/headerTop/index.vue";
+import phoneBottom from "@/views/WebVision/components/phoneBottom/index.vue";
 import type { Choose, IPageData, PageComponent } from "./type";
 
 // 页面数据
