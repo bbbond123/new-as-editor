@@ -16,9 +16,14 @@
           v-for="(item, ind) in items.comList"
           :key="ind"
         >
-          <i class="iconfont" :class="item.icon" v-if="item.icon" />
-          <van-icon :name="item.vanIcon" v-else />
-          <p>{{ item.text }}</p>
+          <div class="comp-icon">
+            <i class="iconfont" :class="item.icon" v-if="item.icon" />
+            <el-icon v-else><ElementPlus /></el-icon>
+          </div>
+          <div class="comp-name">
+            <span>{{ item.text }}</span>
+            <p>{{ item.name }}</p>
+          </div>
         </div>
       </el-collapse-item>
     </el-collapse>
@@ -27,11 +32,11 @@
 
 <script setup lang="ts">
 import { reactive } from "vue";
-
+import { ElementPlus } from "@element-plus/icons-vue";
 // Define interfaces
 interface ComponentItem {
   text: string;
-  type: string;
+  type?: string;
   icon?: string;
   vanIcon?: string;
   name: string;
@@ -181,75 +186,51 @@ const datas = reactive<DataItem[]>([
       },
       {
         text: "帖子详情模块",
-        type: "2-3",
-        icon: "icon-dianpubijikapian",
-        name: "postdetailsbox",
+        name: "PostDetailsBox",
       },
       {
         text: "通用盒子",
-        icon: "icon-dianpubijikapian",
-        name: "CustomBox",
-        type: "",
+        name: "custombox",
       },
       {
         text: "通用广告",
-        icon: "icon-dianpubijikapian",
-        name: "CustomBarAd",
-        type: "",
+        name: "custombarad",
       },
       {
         text: "开奖结果",
-        icon: "icon-dianpubijikapian",
-        name: "GameResult",
-        type: "",
+        name: "gameresult",
       },
       {
         text: "BBS列表模块",
-        icon: "icon-dianpubijikapian",
-        name: "NavBBSListBox",
-        type: "",
+        name: "navbbslistbox",
       },
       {
         text: "广告大全",
-        icon: "icon-dianpubijikapian",
-        name: "WebAd",
-        type: "",
+        name: "webad",
       },
       {
         text: "导航菜单",
-        icon: "icon-dianpubijikapian",
-        name: "NavBar",
-        type: "",
+        name: "navbar",
       },
       {
         text: "广告大全-翻页",
-        icon: "icon-dianpubijikapian",
-        name: "WebAdMore",
-        type: "",
+        name: "webadmore",
       },
       {
         text: "推广广告",
-        icon: "icon-dianpubijikapian",
-        name: "AdBar",
-        type: "",
+        name: "adbar",
       },
       {
         text: "首页页脚",
-        icon: "icon-dianpubijikapian",
-        name: "FooterBar",
-        type: "",
+        name: "footerbar",
       },
       {
         text: "首页头部",
-        icon: "icon-dianpubijikapian",
-        name: "HeaderBar",
-        type: "",
+        name: "headerbar",
       },
       {
         text: "首页公告",
-        icon: "icon-dianpubijikapian",
-        name: "HomePopNotice",
-        type: "",
+        name: "homepopnotice",
       },
     ],
   },
@@ -267,7 +248,8 @@ const drag = (event: DragEvent): void => {
     /* 传递参数 */
     event.dataTransfer.setData(
       "componentName",
-      (event.currentTarget as HTMLElement).dataset.name || ""
+      (event.currentTarget as HTMLElement).dataset.name?.toLocaleLowerCase() ||
+        ""
     );
   }
 };
@@ -307,19 +289,31 @@ const dragends = (event: DragEvent): void => {
 
   /* 组件列表 */
   .componList {
-    display: inline-flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 80px;
-    height: 88px;
+    display: flex;
+    column-gap: 10px;
     margin-bottom: 8px;
     align-items: center;
     cursor: all-scroll;
     transition: all 0.3s;
+    .comp-icon {
+      font-size: 1.5rem;
+      width: 2rem;
+      line-height: 32px;
+      color: #b0a8a8;
+      margin-top: 4px;
+    }
+    .comp-name {
+      font-size: medium;
+      color: #323233;
+      p {
+        color: #7d7e80;
+        font-size: small;
+      }
+    }
     &:hover {
       background: #155bd4;
       border-radius: 2px;
-      font-weight: 700;
+      // font-weight: 700;
       i,
       p,
       span {
@@ -334,18 +328,6 @@ const dragends = (event: DragEvent): void => {
       line-height: 32px;
       color: #b0a8a8;
       margin-top: 4px;
-    }
-    /* 标题 */
-    p {
-      font-size: 12px;
-      color: #323233;
-      margin-top: 4px;
-    }
-    /* 数量 */
-    span {
-      color: #7d7e80;
-      margin-top: 4px;
-      font-size: 10px;
     }
   }
 }
