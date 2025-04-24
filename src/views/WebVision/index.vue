@@ -448,8 +448,10 @@ const allowDrop = (event: DragEvent) => {
 
 const drop = (event: any) => {
   /* 获取数据 */
+  const componentName = event.dataTransfer.getData("componentName")
+  console.log("🚀 ~ drop ~ componentName:", componentName)
   let data = utils.deepClone(
-    componentProperties.get(event.dataTransfer.getData("componentName"))
+    componentProperties.get(componentName)
   );
   /* 替换 */
   datas.pageComponents.forEach((res, index) => {

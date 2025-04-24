@@ -26,6 +26,7 @@ Object.entries(modules).forEach(([path, module]: any) => {
   }
 
   componentName = componentName.toLowerCase(); // 统一小写
+  console.log("🚀 ~ Object.entries ~ componentName:", componentName)
   app.component(componentName, module.default);
 });
 
