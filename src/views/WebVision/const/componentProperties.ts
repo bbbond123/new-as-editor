@@ -395,8 +395,9 @@ componentProperties.set("suspension", {
     http: {},
   },
 });
+
 componentProperties.set("postdetailsbox", {
-  component: "postdetailsbox",
+  component: "postdetailsbox", //不需要type， 
   text: "表单模块",
   active: true,
   style: "postdetailsboxstyle",
