@@ -86,10 +86,7 @@
                 <span>站点设置</span>
               </span>
             </template>
-            <decorate
-              :datas="currentproperties"
-              @componenmanagement="onChangePageComponent"
-            />
+            <decorate :datas="currentproperties" />
           </el-tab-pane>
           <el-tab-pane :name="ETab.list">
             <template #label>
@@ -154,6 +151,7 @@ const datas = reactive({
  * @param {Object} res 组件切换后返回的位置
  */
 const onChangePageComponent = (res: any) => {
+  console.log("🚀 ~ onChangePageComponent ~ res:", res);
   datas.pageComponents = res;
 };
 
