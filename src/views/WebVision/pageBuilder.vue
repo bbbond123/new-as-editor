@@ -98,7 +98,36 @@
                 <span>组件设置详情</span>
               </span>
             </template>
-            <component :is="rightcom" :datas="setStyle" />
+            <div class="switch-area">
+              <el-button-group size="small" v-if="rightcom !== 'blank'">
+                <el-button
+                  type="primary"
+                  :icon="Edit"
+                  :plain="isEditJSON"
+                  @click="isEditJSON = false"
+                >
+                  视图模式
+                </el-button>
+                <el-button
+                  type="primary"
+                  :icon="Document"
+                  :plain="!isEditJSON"
+                  @click="isEditJSON = true"
+                >
+                  JSON模式
+                </el-button>
+              </el-button-group>
+            </div>
+            <div class="editor-area">
+              <component :is="rightcom" :datas="setStyle" />
+              <editorModelStyle
+                v-show="isEditJSON"
+                :isEditJSON="isEditJSON"
+                :pageModel="'componentMode'"
+                :datas="setStyle"
+                @submitJson="() => {}"
+              />
+            </div>
           </el-tab-pane>
         </el-tabs>
       </section>
@@ -112,12 +141,18 @@
 </template>
 
 <script setup lang="ts">
-import { SetUp, ScaleToOriginal, Edit } from "@element-plus/icons-vue";
+import {
+  SetUp,
+  ScaleToOriginal,
+  Edit,
+  Document,
+} from "@element-plus/icons-vue";
 import { reactive, toRefs, ref } from "vue";
 import vuedraggable from "vuedraggable"; //拖拽组件
 import componentProperties from "@/views/WebVision/const/componentProperties"; // 组件数据
 import phoneBottom from "@/views/WebVision/components/phoneBottom/index.vue";
 import headerTop from "@/views/WebVision/components/headerTop/index.vue";
+import editorModelStyle from "@/views/WebVision/components/rightslider/editorModelStyle/index.vue";
 import utils from "@/views/WebVision/const/index";
 import { ETab, type ChooseData, type ComponentItem, type IDatas } from "./type";
 
@@ -160,6 +195,8 @@ const onTabChange = (val: ETab) => {
       break;
   }
 };
+
+const isEditJSON = ref(false);
 
 /**
  * 切换组件位置  用于组件管理中删除功能
@@ -619,5 +656,12 @@ const { rightcom, setStyle, pointer } = toRefs(choose);
 .component-wrapper {
   height: 100%;
   overflow: auto;
+}
+.switch-area {
+  padding: 10px 0;
+  display: grid;
+  place-items: center;
+}
+.editor-area {
 }
 </style>

@@ -31,7 +31,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
 import { ElementPlus } from "@element-plus/icons-vue";
 // Define interfaces
 interface ComponentItem {
@@ -58,7 +58,7 @@ const props = defineProps<{
 
 // 侧边栏组件显示
 // [1] 基本组件 [2] 业务组件
-const activeNames = reactive<number[]>([2]);
+const activeNames = ref<number[]>([2]);
 
 // 组件信息配置
 const datas = reactive<DataItem[]>([
