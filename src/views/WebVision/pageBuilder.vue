@@ -107,7 +107,6 @@
             <component
               :is="rightcom"
               :datas="currentproperties"
-              @componenmanagement="onChangePageComponent"
             />
           </el-tab-pane>
         </el-tabs>
