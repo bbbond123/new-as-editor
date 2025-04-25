@@ -249,6 +249,7 @@ const onTabChange = (val: string) => {
       break;
     case "list":
       choose.rightcom = "componenmanagement";
+      choose.currentproperties = datas.pageComponents;
       break;
     case "detail":
       const number = 0;
@@ -295,7 +296,6 @@ const allowDrop = (event: DragEvent) => {
       datas.pageComponents.length === 1 &&
       datas.pageComponents[0].component === "placementarea"
     ) {
-      console.log("datas.pageComponents[0]", datas.pageComponents[0]);
       return;
     }
 
@@ -430,30 +430,6 @@ const dragleaves = () => {
     (res) => res.component !== "placementarea"
   );
 };
-
-// 监听右侧属性设置切换
-watch(
-  () => choose.rightcom,
-  (newval) => {
-    // if (newval === "decorate") {
-    //   console.log("🚀 ~ newval:", newval);
-    //   datas.pageComponents.forEach((res) => {
-    //     /* 修改选中 */
-    //     if (res.active === true) res.active = false;
-    //   });
-    //   choose.currentproperties = datas.pageSetup;
-    //   return;
-    // }
-    if (newval === "componenmanagement") {
-      /* 替换 */
-      datas.pageComponents.forEach((res) => {
-        /* 修改选中 */
-        if (res.active === true) res.active = false;
-      });
-      choose.currentproperties = datas.pageComponents;
-    }
-  }
-);
 
 const { id, pageSetup, pageComponents } = toRefs(datas);
 const { deleShow, tab, rightcom, currentproperties, pointer } = toRefs(choose);
