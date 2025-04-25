@@ -75,7 +75,7 @@
           @tab-change="onTabChange"
           :stretch="true"
         >
-          <el-tab-pane :name="ETab.website">
+          <el-tab-pane :name="ETab.page">
             <template #label>
               <span class="custom-tabs-label">
                 <el-icon><SetUp /></el-icon>
@@ -133,7 +133,6 @@ import { ETab } from "./type";
 
 // 页面数据
 const datas = reactive({
-  id: null, //当前页面id
   page: {
     name: "页面标题", //页面名称
     details: "页面描述信息",
@@ -175,6 +174,7 @@ const unActiveComponent = (event: Event) => {
   datas.pageComponents.forEach((res) => {
     res.active = false;
   });
+  choose.rightcom = "blank"; // 加载空白组件
   // choose.rightcom = "none"; //
 };
 
@@ -183,26 +183,22 @@ const unActiveComponent = (event: Event) => {
  * @param {Object} res 当前组件对象
  */
 const activeComponent = (res, index: number) => {
-  choose.index = index;
-  // website   // componenmanagement   // components
-  /* 切换组件 */
-  // @ts-ignore
-  choose.rightcom = res.style;
-  /* 丢样式 */
-  choose.currentproperties = res.setStyle;
+  choose.rightcom = res.style; // 加载配置组件
 
-  /* 替换 */
+  choose.index = index;
+  choose.currentproperties = res.setStyle;
   datas.pageComponents.forEach((res) => {
-    /* 修改选中 */
-    if (res.active === true) res.active = false;
+    if (res.active === true) {
+      res.active = false;
+    }
   });
-  /* 选中样式 */
   res.active = true;
+  tab.value = ETab.detail;
 };
 
 // 切换标题
 const headTop = () => {
-  choose.rightcom = "decorate";
+  tab.value = ETab.page;
   /* 替换 */
   datas.pageComponents.forEach((res) => {
     /* 修改选中 */
@@ -239,11 +235,11 @@ const deleteObj = (index: number) => {
 };
 
 //website list detail
-const tab = ref<ETab>(ETab.website);
+const tab = ref<ETab>(ETab.page);
 
 const onTabChange = (val: ETab) => {
   switch (val) {
-    case ETab.website:
+    case ETab.page:
       break;
     case ETab.list:
       // choose.rightcom = "componenmanagement";

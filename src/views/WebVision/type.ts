@@ -188,7 +188,16 @@ interface swiperItem {
 }
 
 export enum ETab {
-  website,
+  /**
+   * 页面其他信息 配置栏
+   */
+  page,
+  /**
+   * 组件排序栏
+   */
   list,
+  /**
+   * 组件详情，配置栏
+   */
   detail,
 }
