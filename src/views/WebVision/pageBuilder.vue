@@ -126,12 +126,14 @@ import headerTop from "@/views/WebVision/components/headerTop/index.vue";
 import utils from "@/views/WebVision/const/index";
 import { ETab } from "./type";
 
-// 页面数据
+// 加载当前页面数据
 const datas = reactive({
+  // page
   page: {
     name: "页面标题", //页面名称
     details: "页面描述信息",
   },
+  // list
   pageComponents: [], //页面组件
 });
 
@@ -147,9 +149,6 @@ const initChooseData = () => {
   return {
     deleShow: true, // 删除标签显示
     pointer: { show: false }, // 穿透
-    // 非组件数据，都放在这里
-    page: datas.page,
-
     // 选中组件相关的
     index: -1, // 当前选中组件index
     rightcom: "blank", // 当前选中组件的对应的文件名字
@@ -163,13 +162,10 @@ const initChooseData = () => {
 const choose = reactive(initChooseData());
 
 const unActiveComponent = (event: Event) => {
-  // 站点的话
-  // choose.index = -1;
   datas.pageComponents.forEach((res) => {
     res.active = false;
   });
-  choose.rightcom = "blank"; // 加载空白组件
-  // choose.rightcom = "none"; //
+  choose.rightcom = "blank";
 };
 
 /**
@@ -177,16 +173,16 @@ const unActiveComponent = (event: Event) => {
  * @param {Object} res 当前组件对象
  */
 const activeComponent = (res, index: number) => {
-  choose.rightcom = res.style; // 加载配置组件
-
-  choose.index = index;
-  choose.currentproperties = res.setStyle;
   datas.pageComponents.forEach((res) => {
     if (res.active === true) {
       res.active = false;
     }
   });
   res.active = true;
+
+  choose.rightcom = res.style; // 加载配置组件
+  choose.index = index;
+  choose.currentproperties = res.setStyle;
   tab.value = ETab.detail;
 };
 
@@ -214,12 +210,7 @@ const onStopPropagation = (event: Event) => {
 const deleteObj = (index: number) => {
   datas.pageComponents.splice(index, 1);
 
-  if (datas.pageComponents.length === 0) {
-    choose.rightcom = "blank";
-    choose.currentproperties = {};
-  }
-
-  if (choose.index === index) {
+  if (datas.pageComponents.length === 0 || choose.index === index) {
     choose.rightcom = "blank";
     choose.currentproperties = {};
   }
@@ -239,7 +230,6 @@ const onTabChange = (val: ETab) => {
     case ETab.list:
       break;
     case ETab.detail:
-    
       break;
   }
 };
@@ -397,8 +387,8 @@ const dragleaves = () => {
   );
 };
 
-const { pageComponents } = toRefs(datas);
-const { deleShow, page, rightcom, currentproperties, pointer } = toRefs(choose);
+const { pageComponents, page } = toRefs(datas);
+const { deleShow, rightcom, currentproperties, pointer } = toRefs(choose);
 </script>
 
 <style lang="less" scoped>
