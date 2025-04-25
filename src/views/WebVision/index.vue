@@ -295,7 +295,7 @@ const onTabChange = (val: string) => {
       break;
     case "detail":
       // choose.currCompName =
-    
+
       // const currentComponent = choose.currentproperties[0];
 
       // choose.index = index;
@@ -343,13 +343,18 @@ const allowDrop = (event: DragEvent) => {
   // 一个以上的组件计算
   if (datas.pageComponents.length) {
     /* 如果只有一个组件并且第一个是提示组件直接返回 */
-    if (datas.pageComponents.length === 1 && datas.pageComponents[0].type === 0)
+    if (
+      datas.pageComponents.length === 1 &&
+      datas.pageComponents[0].component === "placementarea"
+    ) {
+      console.log("datas.pageComponents[0]", datas.pageComponents[0]);
       return;
+    }
 
     /* 如果鼠标的高度小于第一个的一半直接放到第一个 */
     if (eventoffset < childrenObject.children[0].clientHeight / 2) {
       /* 如果第一个是提示组件直接返回 */
-      if (datas.pageComponents[0].type === 0) return;
+      if (datas.pageComponents[0].component === "placementarea") return;
 
       /* 删除提示组件 */
       datas.pageComponents = datas.pageComponents.filter(
@@ -377,7 +382,10 @@ const allowDrop = (event: DragEvent) => {
         eventoffset
     ) {
       /* 最后一个组件是提示组件返回 */
-      if (datas.pageComponents[datas.pageComponents.length - 1].type === 0)
+      if (
+        datas.pageComponents[datas.pageComponents.length - 1].component ===
+        "placementarea"
+      )
         return;
 
       /* 清除提示组件 */
@@ -402,9 +410,9 @@ const allowDrop = (event: DragEvent) => {
 
       if (childoffset + childrens[i].clientHeight / 2 > event.offsetY) {
         /* 如果是提示组件直接返回 */
-        if (datas.pageComponents[i].type === 0) break;
+        if (datas.pageComponents[i].component === "placementarea") break;
 
-        if (datas.pageComponents[i - 1].type === 0) break;
+        if (datas.pageComponents[i - 1].component === "placementarea") break;
 
         /* 清除提示组件 */
         datas.pageComponents = datas.pageComponents.filter(
@@ -417,11 +425,11 @@ const allowDrop = (event: DragEvent) => {
         });
         break;
       } else if (childoffset + childrens[i].clientHeight > event.offsetY) {
-        if (datas.pageComponents[i].type === 0) break;
+        if (datas.pageComponents[i].component === "placementarea") break;
 
         if (
           !datas.pageComponents[i + 1] ||
-          datas.pageComponents[i + 1].type === 0
+          datas.pageComponents[i + 1].component === "placementarea"
         )
           break;
 
@@ -448,11 +456,9 @@ const allowDrop = (event: DragEvent) => {
 
 const drop = (event: any) => {
   /* 获取数据 */
-  const componentName = event.dataTransfer.getData("componentName")
-  console.log("🚀 ~ drop ~ componentName:", componentName)
-  let data = utils.deepClone(
-    componentProperties.get(componentName)
-  );
+  const componentName = event.dataTransfer.getData("componentName");
+  console.log("🚀 ~ drop ~ componentName:", componentName);
+  let data = utils.deepClone(componentProperties.get(componentName));
   /* 替换 */
   datas.pageComponents.forEach((res, index) => {
     /* 修改选中 */
