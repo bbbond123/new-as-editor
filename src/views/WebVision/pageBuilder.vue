@@ -170,7 +170,6 @@ const onChangePageComponent = (res: any) => {
 const choose = reactive({
   deleShow: true, // 删除标签显示
   index: -1, // 当前选中的index
-  tab: "", // 右侧tab 切换  components sort components
   rightcom: "decorate", // 右侧组件切换
   currentproperties: datas.pageSetup, // 当前属性  默认：页面设置
   offsetY: 0, //记录上一次距离父元素高度
@@ -422,7 +421,6 @@ const drop = (event: any) => {
   choose.rightcom = data.style;
   /* 丢样式 */
   choose.currentproperties = data.setStyle;
-
 };
 
 const dragleaves = () => {
