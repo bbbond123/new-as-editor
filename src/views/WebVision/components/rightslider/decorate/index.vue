@@ -30,18 +30,6 @@
         />
       </el-form-item>
 
-      <!-- 个人中心 -->
-      <el-form-item label="个人中心" class="lef">
-        {{ datas.isPerson ? '显示' : '隐藏' }}
-        <el-checkbox style="margin-left: 196px" v-model="datas.isPerson" />
-      </el-form-item>
-
-      <!-- 返回 -->
-      <el-form-item label="返回按钮" class="lef">
-        {{ datas.isBack ? '显示' : '隐藏' }}
-        <el-checkbox style="margin-left: 196px" v-model="datas.isBack" />
-      </el-form-item>
-
       <!-- 高度 -->
       <el-form-item label="高度" class="lef-height">
         <el-slider

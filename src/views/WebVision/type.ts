@@ -4,8 +4,6 @@ import type { UploadUserFile } from "element-plus";
 export type PageSetup = {
   name: string;
   details?: string;
-  isPerson?: boolean;
-  isBack?: boolean;
   titleHeight?: number;
   bgColor?: string;
   bgImg?: string;

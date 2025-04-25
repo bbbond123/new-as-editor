@@ -18,8 +18,6 @@ const datas = reactive({
     // 页面设置属性
     name: "页面标题", //页面名称
     details: "", //页面描述
-    isPerson: false, // 是否显示个人中心
-    isBack: true, // 是否返回按钮
     titleHeight: 35, // 高度
     bgColor: "rgba(249, 249, 249, 10)", //背景颜色
     bgImg: "", // 背景图片
