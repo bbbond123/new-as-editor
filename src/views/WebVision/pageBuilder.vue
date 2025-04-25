@@ -103,7 +103,6 @@
                 <span>组件设置详情</span>
               </span>
             </template>
-
             <component :is="rightcom" :datas="currentproperties" />
           </el-tab-pane>
         </el-tabs>
