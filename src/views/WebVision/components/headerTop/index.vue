@@ -2,25 +2,25 @@
   <div
     class="headerTop"
     :style="{
-      height: pageSetup.titleHeight + 'px',
+      height: page.titleHeight + 'px',
     }"
   >
     <!-- 左半部分 -->
-    <div class="lef" v-show="pageSetup.isBack">
+    <div class="lef" v-show="page.isBack">
       <van-icon name="arrow-left" />
     </div>
     <!-- 标题 -->
     <div
       class="header-title"
       :style="{
-        height: pageSetup.titleHeight + 'px',
-        'line-height': pageSetup.titleHeight + 'px',
+        height: page.titleHeight + 'px',
+        'line-height': page.titleHeight + 'px',
       }"
     >
-      {{ pageSetup.name }}
+      {{ page.name }}
     </div>
     <!-- 右半部分 -->
-    <div class="rig" v-show="pageSetup.isPerson">
+    <div class="rig" v-show="page.isPerson">
       <span>个人中心</span>
     </div>
   </div>
@@ -30,7 +30,7 @@
 export default {
   name: 'headerTop',
   props: {
-    pageSetup: Object,
+    page: Object,
   },
 }
 </script>

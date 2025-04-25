@@ -14,14 +14,10 @@
         >
           <img src="@/assets/images/phoneTop.png" alt="" class="statusBar" />
           <!-- 头部导航 -->
-          <headerTop :pageSetup="pageSetup" @click="headTop" />
+          <headerTop :page="page" @click="headTop" />
           <!-- 主体内容 -->
           <section
             class="phone-container"
-            :style="{
-              'background-color': pageSetup.bgColor,
-              backgroundImage: 'url(' + pageSetup.bgImg + ')',
-            }"
             @drop="drop($event)"
             @dragover="allowDrop($event)"
             @dragleave="dragleaves()"
@@ -86,7 +82,7 @@
                 <span>站点设置</span>
               </span>
             </template>
-            <decorate :datas="currentproperties" />
+            <decorate :datas="page" />
           </el-tab-pane>
           <el-tab-pane :name="ETab.list">
             <template #label>
@@ -138,10 +134,9 @@ import { ETab } from "./type";
 // 页面数据
 const datas = reactive({
   id: null, //当前页面id
-  pageSetup: {
-    // 站点，或模版 行数据带过来，跟，并不能做更新，只是显示
+  page: {
     name: "页面标题", //页面名称
-    details: '页面描述信息'
+    details: "页面描述信息",
   },
   pageComponents: [], //页面组件
 });
@@ -158,11 +153,16 @@ const onChangePageComponent = (res: any) => {
 const initChooseData = () => {
   return {
     deleShow: true, // 删除标签显示
-    index: -1, // 当前选中的index
-    rightcom: "blank", // 右侧组件切换
-    currentproperties: datas.pageSetup, // 当前属性  默认：页面设置
-    offsetY: 0, //记录上一次距离父元素高度
     pointer: { show: false }, // 穿透
+    // 非组件数据，都放在这里
+    page: datas.page,
+
+    // 选中组件相关的
+    index: -1, // 当前选中组件index
+    rightcom: "blank", // 当前选中组件的对应的文件名字
+    currentproperties: {}, // 当前选中组件的对应的属性
+
+    offsetY: 0, //记录上一次距离父元素高度
   };
 };
 
@@ -422,8 +422,8 @@ const dragleaves = () => {
   );
 };
 
-const { id, pageSetup, pageComponents } = toRefs(datas);
-const { deleShow, rightcom, currentproperties, pointer } = toRefs(choose);
+const { pageComponents } = toRefs(datas);
+const { deleShow, page, rightcom, currentproperties, pointer } = toRefs(choose);
 </script>
 
 <style lang="less" scoped>
