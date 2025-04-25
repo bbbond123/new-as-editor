@@ -104,10 +104,7 @@
               </span>
             </template>
 
-            <component
-              :is="rightcom"
-              :datas="currentproperties"
-            />
+            <component :is="rightcom" :datas="currentproperties" />
           </el-tab-pane>
         </el-tabs>
       </section>
@@ -219,14 +216,15 @@ const deleteObj = (index: number) => {
   datas.pageComponents.splice(index, 1);
 
   if (datas.pageComponents.length === 0) {
-    Object.assign(choose, initChooseData());
-    return;
+    choose.rightcom = "blank";
+    choose.currentproperties = {};
   }
 
   if (choose.index === index) {
-    choose.rightcom = "componenmanagement";
-    choose.currentproperties = datas.pageComponents;
+    choose.rightcom = "blank";
+    choose.currentproperties = {};
   }
+
   if (index < choose.index) {
     choose.index = choose.index - 1;
   }
