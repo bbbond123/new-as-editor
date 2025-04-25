@@ -12,7 +12,6 @@
           id="imageTofile"
           @click="onStopPropagation"
         >
-          {{ datas }}
           <img src="@/assets/images/phoneTop.png" alt="" class="statusBar" />
           <!-- 头部导航 -->
           <headerTop :pageSetup="pageSetup" @click="headTop" />
@@ -106,7 +105,11 @@
               @componenmanagement="onChangePageComponent"
             />
           </el-tab-pane>
-          <el-tab-pane label="组件设置详情" name="detail">
+          <el-tab-pane
+            label="组件设置详情"
+            name="detail"
+            :disabled="pageComponents.length === 0"
+          >
             <template #label>
               <span class="custom-tabs-label">
                 <el-icon><Edit /></el-icon>
@@ -123,9 +126,11 @@
         </el-tabs>
       </section>
     </section>
-    <div class="debugger-text">
-      {{ choose }}
-    </div>
+    <!-- 
+      <div class="debugger-text">
+        {{ datas }}
+      </div>
+      -->
   </div>
 </template>
 
@@ -170,7 +175,6 @@ const choose = reactive<Choose>({
   deleShow: true, // 删除标签显示
   index: -1, // 当前选中的index
   tab: "", // 右侧tab 切换  components sort components
-  currCompName: "", // 当前组件名称
   rightcom: "decorate", // 右侧组件切换
   currentproperties: datas.pageSetup, // 当前属性  默认：页面设置
   offsetY: 0, //记录上一次距离父元素高度
@@ -184,8 +188,7 @@ const unActiveComponent = (event: Event) => {
   datas.pageComponents.forEach((res) => {
     res.active = false;
   });
-  choose.rightcom = "none"; //  \ componenmanagement \ 具体组件名称
-  choose.currCompName = "";
+  choose.rightcom = "none"; //
 };
 /**
  * 选择组件
@@ -195,7 +198,6 @@ const unActiveComponent = (event: Event) => {
 const activeComponent = (res: PageComponent, index: number) => {
   choose.index = index;
   choose.tab = "detail";
-  choose.currCompName = res.style!;
   // website
   // componenmanagement
   // components
@@ -454,8 +456,7 @@ watch(
 );
 
 const { id, pageSetup, pageComponents } = toRefs(datas);
-const { deleShow, tab, rightcom, currCompName, currentproperties, pointer } =
-  toRefs(choose);
+const { deleShow, tab, rightcom, currentproperties, pointer } = toRefs(choose);
 </script>
 
 <style lang="less" scoped>
@@ -466,7 +467,7 @@ const { deleShow, tab, rightcom, currCompName, currentproperties, pointer } =
 .home {
   width: 100%;
   height: 100%;
-
+  user-select: none;
   /* 删除组件 */
   .deles {
     position: absolute;

@@ -41,7 +41,6 @@ export interface Choose {
    * 详情 detail
    */
   tab: string;
-  currCompName: string; // 组件名称
   rightcom: string; // 组件名称
   currentproperties: unknown;
   offsetY: number;
