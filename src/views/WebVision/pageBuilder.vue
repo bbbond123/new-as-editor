@@ -162,7 +162,7 @@ import {
   Edit,
   Document,
 } from "@element-plus/icons-vue";
-import { reactive, toRefs, ref } from "vue";
+import { reactive, toRefs, ref, onMounted } from "vue";
 import vuedraggable from "vuedraggable"; //拖拽组件
 import componentProperties from "@/views/WebVision/const/componentProperties"; // 组件数据
 import phoneBottom from "@/views/WebVision/components/phoneBottom/index.vue";
@@ -196,12 +196,23 @@ const initChooseData = () => {
 const isLoading = ref(false);
 
 const onSubmitAll = () => {};
+
+onMounted(() => {
+  // 加载一个组件
+  // const componentName = "postdetailsbox";
+  // const component = utils.deepClone(componentProperties.get(componentName));
+  // datas.pageComponents.push(component);
+
+  // 加载模版组件
+  //
+
+});
+
 // 选择组件数据
 const choose = reactive<ChooseData>(initChooseData());
 
 //website list detail
 const tab = ref<ETab>(ETab.page);
-
 const onTabChange = (val: ETab) => {
   switch (val) {
     case ETab.page:
