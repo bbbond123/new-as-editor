@@ -133,13 +133,13 @@
 </template>
 
 <script setup lang="ts">
-import utils from "@/views/WebVision/const/index";
-import componentProperties from "@/views/WebVision/const/componentProperties"; // 组件数据
-import { reactive, toRefs } from "vue";
 import { SetUp, ScaleToOriginal, Edit } from "@element-plus/icons-vue";
+import { reactive, toRefs } from "vue";
 import vuedraggable from "vuedraggable"; //拖拽组件
-import headerTop from "@/views/WebVision/components/headerTop/index.vue";
+import componentProperties from "@/views/WebVision/const/componentProperties"; // 组件数据
 import phoneBottom from "@/views/WebVision/components/phoneBottom/index.vue";
+import headerTop from "@/views/WebVision/components/headerTop/index.vue";
+import utils from "@/views/WebVision/const/index";
 
 // 页面数据
 const datas = reactive({
@@ -160,7 +160,6 @@ const datas = reactive({
 
 /**
  * 切换组件位置  用于组件管理中删除功能
- *
  * @param {Object} res 组件切换后返回的位置
  */
 const onChangePageComponent = (res: any) => {
@@ -187,19 +186,16 @@ const unActiveComponent = (event: Event) => {
   });
   // choose.rightcom = "none"; //
 };
+
 /**
  * 选择组件
- *
  * @param {Object} res 当前组件对象
  */
 const activeComponent = (res, index: number) => {
   choose.index = index;
   choose.tab = "detail";
-  // website
-  // componenmanagement
-  // components
+  // website   // componenmanagement   // components
   /* 切换组件 */
-
   // @ts-ignore
   choose.rightcom = res.style;
   /* 丢样式 */
@@ -210,7 +206,6 @@ const activeComponent = (res, index: number) => {
     /* 修改选中 */
     if (res.active === true) res.active = false;
   });
-
   /* 选中样式 */
   res.active = true;
 };
@@ -221,7 +216,9 @@ const headTop = () => {
   /* 替换 */
   datas.pageComponents.forEach((res) => {
     /* 修改选中 */
-    if (res.active === true) res.active = false;
+    if (res.active === true) {
+      res.active = false;
+    }
   });
 };
 
@@ -635,7 +632,7 @@ const { deleShow, tab, rightcom, currentproperties, pointer } = toRefs(choose);
 }
 
 .component-settings {
-  min-width: 450px;
+  width: 450px;
 }
 
 .custom-tabs {
