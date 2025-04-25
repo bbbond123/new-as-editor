@@ -29,45 +29,6 @@
           placeholder="用户通过微信分享给朋友时，会自动显示页面描述"
         />
       </el-form-item>
-
-      <!-- 高度 -->
-      <el-form-item label="高度" class="lef-height">
-        <el-slider
-          v-model="datas.titleHeight"
-          :max="100"
-          :min="35"
-          input-size="small"
-          show-input
-        >
-        </el-slider>
-      </el-form-item>
-
-      <!-- 背景颜色 -->
-      <el-form-item label="背景颜色" class="lef">
-        <!-- 颜色选择器 -->
-        <el-color-picker
-          v-model="datas.bgColor"
-          show-alpha
-          :predefine="predefineColors"
-        >
-        </el-color-picker>
-      </el-form-item>
-
-      <el-form-item label="背景图片">
-        <div class="shop-head-pic" style="text-align: center">
-          <img class="home-bg" :src="datas.bgImg" alt="" v-if="datas.bgImg" />
-          <div class="shop-head-pic-btn" style="text-align: center">
-            <el-button
-              @click="showUpload('2')"
-              class="uploadImg"
-              type="primary"
-              plain
-              >更换图片</el-button
-            >
-            <el-button type="primary" @click="clear()">清空图片</el-button>
-          </div>
-        </div>
-      </el-form-item>
     </el-form>
 
     <!-- 上传图片 -->
@@ -76,10 +37,10 @@
 </template>
 
 <script>
-import uploadimg from '@/views/WebVision/components/uploadImg/index.vue' //图片上传
+import uploadimg from "@/views/WebVision/components/uploadImg/index.vue"; //图片上传
 
 export default {
-  name: 'decorate',
+  name: "decorate",
   props: {
     datas: Object,
   },
@@ -89,65 +50,65 @@ export default {
         //校验表单输入
         name: [
           //页面名称
-          { required: true, message: '请输入页面名称', trigger: 'blur' },
+          { required: true, message: "请输入页面名称", trigger: "blur" },
         ],
         details: [
           //页面描述
-          { required: true, message: '请输入页面描述', trigger: 'blur' },
+          { required: true, message: "请输入页面描述", trigger: "blur" },
         ],
         classification: [
           //分类
-          { required: true, message: '请选择页面分类', trigger: 'blur' },
+          { required: true, message: "请选择页面分类", trigger: "blur" },
         ],
       },
       pickeShow: false, //颜色选择器是否显示
       predefineColors: [
         // 颜色选择器预设
-        '#ff4500',
-        '#ff8c00',
-        '#ffd700',
-        '#90ee90',
-        '#00ced1',
-        '#1e90ff',
-        '#c71585',
-        '#409EFF',
-        '#909399',
-        '#C0C4CC',
-        'rgba(255, 69, 0, 0.68)',
-        'rgb(255, 120, 0)',
-        'hsv(51, 100, 98)',
-        'hsva(120, 40, 94, 0.5)',
-        'hsl(181, 100%, 37%)',
-        'hsla(209, 100%, 56%, 0.73)',
-        '#c7158577',
+        "#ff4500",
+        "#ff8c00",
+        "#ffd700",
+        "#90ee90",
+        "#00ced1",
+        "#1e90ff",
+        "#c71585",
+        "#409EFF",
+        "#909399",
+        "#C0C4CC",
+        "rgba(255, 69, 0, 0.68)",
+        "rgb(255, 120, 0)",
+        "hsv(51, 100, 98)",
+        "hsva(120, 40, 94, 0.5)",
+        "hsl(181, 100%, 37%)",
+        "hsla(209, 100%, 56%, 0.73)",
+        "#c7158577",
       ],
       uploadImgDataType: null, // 获取到的图片地址属于哪一类别   0 修改底部logo   1 修改店铺图标 2 页面背景图
-    }
+    };
   },
   setup() {
-    return {}
+    return {};
   },
   methods: {
     // 显示上传图片组件   type :  2 页面背景图
     showUpload(type) {
-      this.uploadImgDataType = type
-      this.$refs.upload.showUpload()
+      this.uploadImgDataType = type;
+      this.$refs.upload.showUpload();
     },
 
     // 上传图片
     uploadInformation(res) {
-      if (this.uploadImgDataType === '2') {
-        this.datas.bgImg = res
+      if (this.uploadImgDataType === "2") {
+        this.datas.bgImg = res;
       }
     },
 
     // 清空背景图片
     clear() {
-      this.datas.bgImg = ''
+      this.datas.bgImg = "";
     },
   },
   components: { uploadimg },
-}
+};
 </script>
 
 <style scoped lang="less">

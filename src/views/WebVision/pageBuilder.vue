@@ -103,18 +103,14 @@
               @componenmanagement="onChangePageComponent"
             />
           </el-tab-pane>
-          <el-tab-pane
-            label="组件设置详情"
-            :name="ETab.detail"
-            :disabled="pageComponents && pageComponents.length === 0"
-          >
+          <el-tab-pane label="组件设置详情" :name="ETab.detail">
             <template #label>
               <span class="custom-tabs-label">
                 <el-icon><Edit /></el-icon>
                 <span>组件设置详情</span>
               </span>
             </template>
-            {{ choose }}
+
             <component
               :is="rightcom"
               :datas="currentproperties"
@@ -146,12 +142,9 @@ import { ETab } from "./type";
 const datas = reactive({
   id: null, //当前页面id
   pageSetup: {
-    // 页面设置属性
+    // 站点，或模版 行数据带过来，跟，并不能做更新，只是显示
     name: "页面标题", //页面名称
     details: "", //页面描述
-    titleHeight: 35, // 高度
-    bgColor: "rgba(249, 249, 249, 10)", //背景颜色
-    bgImg: "", // 背景图片
   },
   pageComponents: [], //页面组件
 });
@@ -164,15 +157,19 @@ const onChangePageComponent = (res: any) => {
   datas.pageComponents = res;
 };
 
+const initChooseData = () => {
+  return {
+    deleShow: true, // 删除标签显示
+    index: -1, // 当前选中的index
+    rightcom: "blank", // 右侧组件切换
+    currentproperties: datas.pageSetup, // 当前属性  默认：页面设置
+    offsetY: 0, //记录上一次距离父元素高度
+    pointer: { show: false }, // 穿透
+  };
+};
+
 // 选择组件数据
-const choose = reactive({
-  deleShow: true, // 删除标签显示
-  index: -1, // 当前选中的index
-  rightcom: "", // 右侧组件切换
-  currentproperties: datas.pageSetup, // 当前属性  默认：页面设置
-  offsetY: 0, //记录上一次距离父元素高度
-  pointer: { show: false }, // 穿透
-});
+const choose = reactive(initChooseData());
 
 const unActiveComponent = (event: Event) => {
   // 站点的话
@@ -230,12 +227,11 @@ const deleteObj = (index: number) => {
   datas.pageComponents.splice(index, 1);
 
   if (datas.pageComponents.length === 0) {
-    tab.value = ETab.website;
+    Object.assign(choose, initChooseData());
     return;
   }
 
   if (choose.index === index) {
-    choose.rightcom = "decorate";
     choose.rightcom = "componenmanagement";
     choose.currentproperties = datas.pageComponents;
   }
