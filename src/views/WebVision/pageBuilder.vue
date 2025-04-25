@@ -93,7 +93,7 @@
             </template>
             <componenmanagement
               :datas="pageComponents"
-              @componenmanagement="onChangePageComponent"
+              @componenmanagement="onSortList"
             />
           </el-tab-pane>
           <el-tab-pane label="组件设置详情" :name="ETab.detail">
@@ -143,8 +143,7 @@ const datas = reactive({
  * 切换组件位置  用于组件管理中删除功能
  * @param {Object} res 组件切换后返回的位置
  */
-const onChangePageComponent = (res: any) => {
-  console.log("🚀 ~ onChangePageComponent ~ res:", res);
+const onSortList = (res: any) => {
   datas.pageComponents = res;
 };
 
