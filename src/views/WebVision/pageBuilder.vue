@@ -183,12 +183,12 @@ const choose = reactive<Choose>({
 
 const unActiveComponent = (event: Event) => {
   // 站点的话
-  choose.tab = "";
-  choose.index = -1;
+  // choose.tab = "";
+  // choose.index = -1;
   datas.pageComponents.forEach((res) => {
     res.active = false;
   });
-  choose.rightcom = "none"; //
+  // choose.rightcom = "none"; //
 };
 /**
  * 选择组件
@@ -435,15 +435,15 @@ const dragleaves = () => {
 watch(
   () => choose.rightcom,
   (newval) => {
-    if (newval === "decorate") {
-      console.log("🚀 ~ newval:", newval);
-      datas.pageComponents.forEach((res) => {
-        /* 修改选中 */
-        if (res.active === true) res.active = false;
-      });
-      choose.currentproperties = datas.pageSetup;
-      return;
-    }
+    // if (newval === "decorate") {
+    //   console.log("🚀 ~ newval:", newval);
+    //   datas.pageComponents.forEach((res) => {
+    //     /* 修改选中 */
+    //     if (res.active === true) res.active = false;
+    //   });
+    //   choose.currentproperties = datas.pageSetup;
+    //   return;
+    // }
     if (newval === "componenmanagement") {
       /* 替换 */
       datas.pageComponents.forEach((res) => {
