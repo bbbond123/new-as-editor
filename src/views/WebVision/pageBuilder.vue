@@ -237,25 +237,9 @@ const onTabChange = (val: ETab) => {
     case ETab.page:
       break;
     case ETab.list:
-      // choose.rightcom = "componenmanagement";
-      // choose.currentproperties = datas.pageComponents;
       break;
     case ETab.detail:
-      // const number = 0;
-      // const res = datas.pageComponents[number];
-      // const index = number;
-      // choose.index = index;
-      // /* 切换组件 */
-      // choose.rightcom = res.style;
-      // /* 丢样式 */
-      // choose.currentproperties = res.setStyle;
-      // /* 替换 */
-      // datas.pageComponents.forEach((res) => {
-      //   /* 修改选中 */
-      //   if (res.active === true) res.active = false;
-      // });
-      // /* 选中样式 */
-      // res.active = true;
+    
       break;
   }
 };
