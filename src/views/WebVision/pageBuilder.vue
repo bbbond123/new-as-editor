@@ -99,7 +99,6 @@
               </span>
             </template>
             <component
-              :data-name="rightcom"
               :is="rightcom"
               :datas="currentproperties"
               @componenmanagement="onChangePageComponent"
@@ -117,7 +116,6 @@
               </span>
             </template>
             <component
-              :data-name="rightcom"
               :is="rightcom"
               :datas="currentproperties"
               @componenmanagement="onChangePageComponent"
@@ -137,15 +135,14 @@
 <script setup lang="ts">
 import utils from "@/views/WebVision/const/index";
 import componentProperties from "@/views/WebVision/const/componentProperties"; // 组件数据
-import { reactive, watch, toRefs } from "vue";
+import { reactive, toRefs } from "vue";
 import { SetUp, ScaleToOriginal, Edit } from "@element-plus/icons-vue";
 import vuedraggable from "vuedraggable"; //拖拽组件
 import headerTop from "@/views/WebVision/components/headerTop/index.vue";
 import phoneBottom from "@/views/WebVision/components/phoneBottom/index.vue";
-import type { Choose, IPageData, PageComponent } from "./type";
 
 // 页面数据
-const datas = reactive<IPageData>({
+const datas = reactive({
   id: null, //当前页面id
   demo: "自定义内容",
   pageSetup: {
@@ -171,7 +168,7 @@ const onChangePageComponent = (res: any) => {
 };
 
 // 选择组件数据
-const choose = reactive<Choose>({
+const choose = reactive({
   deleShow: true, // 删除标签显示
   index: -1, // 当前选中的index
   tab: "", // 右侧tab 切换  components sort components
@@ -195,7 +192,7 @@ const unActiveComponent = (event: Event) => {
  *
  * @param {Object} res 当前组件对象
  */
-const activeComponent = (res: PageComponent, index: number) => {
+const activeComponent = (res, index: number) => {
   choose.index = index;
   choose.tab = "detail";
   // website
@@ -239,8 +236,15 @@ const onStopPropagation = (event: Event) => {
  */
 const deleteObj = (index: number) => {
   datas.pageComponents.splice(index, 1);
-  if (choose.index === index) choose.rightcom = "decorate";
-  if (index < choose.index) choose.index = choose.index - 1;
+  if (choose.index === index) {
+    choose.rightcom = "decorate";
+    choose.tab = "list";
+    choose.rightcom = "componenmanagement";
+    choose.currentproperties = datas.pageComponents;
+  }
+  if (index < choose.index) {
+    choose.index = choose.index - 1;
+  }
 };
 
 const onTabChange = (val: string) => {
@@ -312,7 +316,6 @@ const allowDrop = (event: DragEvent) => {
       /* 最后面添加提示组件 */
       datas.pageComponents.unshift({
         component: "placementarea",
-        type: 0,
       });
 
       return;
@@ -344,7 +347,6 @@ const allowDrop = (event: DragEvent) => {
       /* 最后一个不是提示组件添加 */
       datas.pageComponents.push({
         component: "placementarea",
-        type: 0,
       });
 
       return;
@@ -369,7 +371,6 @@ const allowDrop = (event: DragEvent) => {
 
         datas.pageComponents.splice(i, 0, {
           component: "placementarea",
-          type: 0,
         });
         break;
       } else if (childoffset + childrens[i].clientHeight > event.offsetY) {
@@ -387,7 +388,6 @@ const allowDrop = (event: DragEvent) => {
 
         datas.pageComponents.splice(i, 0, {
           component: "placementarea",
-          type: 0,
         });
 
         break;
@@ -397,7 +397,6 @@ const allowDrop = (event: DragEvent) => {
     /* 一个组件都没有直接push */
     datas.pageComponents.push({
       component: "placementarea",
-      type: 0,
     });
   }
 };

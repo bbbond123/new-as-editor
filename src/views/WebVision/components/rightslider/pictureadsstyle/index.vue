@@ -374,7 +374,7 @@ export default {
 
   /* 上传图片按钮 */
   .uploadImg {
-    width: 345px;
+    width: 145px;
     height: 40px;
     margin-top: 20px;
   }
