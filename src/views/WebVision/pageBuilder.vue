@@ -119,7 +119,9 @@
               </el-button-group>
             </div>
             <div class="editor-area">
-              <component :is="rightcom" :datas="setStyle" />
+              <div v-show="!isEditJSON">
+                <component :is="rightcom" :datas="setStyle" />
+              </div>
               <editorModelStyle
                 v-show="isEditJSON"
                 :isEditJSON="isEditJSON"
