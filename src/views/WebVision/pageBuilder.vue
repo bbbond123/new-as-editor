@@ -79,7 +79,7 @@
           @tab-change="onTabChange"
           :stretch="true"
         >
-          <el-tab-pane name="website">
+          <el-tab-pane :name="ETab.website">
             <template #label>
               <span class="custom-tabs-label">
                 <el-icon><SetUp /></el-icon>
@@ -91,7 +91,7 @@
               @componenmanagement="onChangePageComponent"
             />
           </el-tab-pane>
-          <el-tab-pane name="list">
+          <el-tab-pane :name="ETab.list">
             <template #label>
               <span class="custom-tabs-label">
                 <el-icon><ScaleToOriginal /></el-icon>
@@ -105,7 +105,7 @@
           </el-tab-pane>
           <el-tab-pane
             label="组件设置详情"
-            name="detail"
+            :name="ETab.detail"
             :disabled="pageComponents.length === 0"
           >
             <template #label>
@@ -134,12 +134,13 @@
 
 <script setup lang="ts">
 import { SetUp, ScaleToOriginal, Edit } from "@element-plus/icons-vue";
-import { reactive, toRefs } from "vue";
+import { reactive, toRefs, ref } from "vue";
 import vuedraggable from "vuedraggable"; //拖拽组件
 import componentProperties from "@/views/WebVision/const/componentProperties"; // 组件数据
 import phoneBottom from "@/views/WebVision/components/phoneBottom/index.vue";
 import headerTop from "@/views/WebVision/components/headerTop/index.vue";
 import utils from "@/views/WebVision/const/index";
+import { ETab } from "./type";
 
 // 页面数据
 const datas = reactive({
@@ -232,7 +233,7 @@ const deleteObj = (index: number) => {
   datas.pageComponents.splice(index, 1);
 
   if (datas.pageComponents.length === 0) {
-    tab.value = "website";
+    tab.value = ETab.website;
     return;
   }
 
@@ -247,17 +248,17 @@ const deleteObj = (index: number) => {
 };
 
 //website list detail
-const tab = ref("website");
+const tab = ref<ETab>(ETab.website);
 
-const onTabChange = (val: string) => {
+const onTabChange = (val: ETab) => {
   switch (val) {
-    case "website":
+    case ETab.website:
       break;
-    case "list":
+    case ETab.list:
       // choose.rightcom = "componenmanagement";
       // choose.currentproperties = datas.pageComponents;
       break;
-    case "detail":
+    case ETab.detail:
       // const number = 0;
       // const res = datas.pageComponents[number];
       // const index = number;

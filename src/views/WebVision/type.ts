@@ -188,3 +188,9 @@ interface swiperItem {
   index?: number;
   uploadList: UploadUserFile[];
 }
+
+export enum ETab {
+  website,
+  list,
+  detail,
+}
