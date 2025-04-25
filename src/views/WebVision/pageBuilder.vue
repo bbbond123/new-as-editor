@@ -103,6 +103,7 @@
                 <span>组件设置详情</span>
               </span>
             </template>
+            {{ choose }}
             <component :is="rightcom" :datas="currentproperties" />
           </el-tab-pane>
         </el-tabs>
@@ -165,6 +166,7 @@ const unActiveComponent = (event: Event) => {
   datas.pageComponents.forEach((res) => {
     res.active = false;
   });
+
   choose.rightcom = "blank";
 };
 
@@ -183,12 +185,12 @@ const activeComponent = (res, index: number) => {
   choose.rightcom = res.style; // 加载配置组件
   choose.index = index;
   choose.currentproperties = res.setStyle;
+
   tab.value = ETab.detail;
 };
 
 // 切换标题
 const headTop = () => {
-  tab.value = ETab.page;
   /* 替换 */
   datas.pageComponents.forEach((res) => {
     /* 修改选中 */
@@ -196,6 +198,7 @@ const headTop = () => {
       res.active = false;
     }
   });
+  tab.value = ETab.page;
 };
 
 const onStopPropagation = (event: Event) => {
@@ -363,20 +366,22 @@ const allowDrop = (event: DragEvent) => {
 const drop = (event: any) => {
   /* 获取数据 */
   const componentName = event.dataTransfer.getData("componentName");
-  console.log("🚀 ~ drop ~ componentName:", componentName);
   let data = utils.deepClone(componentProperties.get(componentName));
   /* 替换 */
   datas.pageComponents.forEach((res, index) => {
     /* 修改选中 */
-    if (res.active === true) res.active = false;
+    if (res.active === true) {
+      res.active = false;
+    }
     /* 替换提示 */
     choose.index = index;
-    if (res.component === "placementarea") datas.pageComponents[index] = data;
+    if (res.component === "placementarea") {
+      datas.pageComponents[index] = data;
+    }
   });
-
   /* 切换组件 */
   choose.rightcom = data.style;
-  /* 丢样式 */
+  /* 当前组件样式 */
   choose.currentproperties = data.setStyle;
 };
 
