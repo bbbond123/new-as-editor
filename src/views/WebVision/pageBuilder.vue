@@ -121,10 +121,10 @@
                 <span>站点设置</span>
               </span>
             </template>
-            <!-- <decorate
+            <decorate
               :datas="currentproperties"
               @componenmanagement="onChangePageComponent"
-            /> -->
+            />
           </el-tab-pane>
           <el-tab-pane name="list">
             <template #label>
@@ -133,6 +133,12 @@
                 <span>组件管理</span>
               </span>
             </template>
+            <component
+              :data-name="rightcom"
+              :is="rightcom"
+              :datas="currentproperties"
+              @componenmanagement="onChangePageComponent"
+            />
           </el-tab-pane>
           <el-tab-pane label="组件设置详情" name="detail">
             <template #label>
@@ -285,37 +291,30 @@ const onTabChange = (val: string) => {
   switch (val) {
     case "website":
       // choose.tab = "website";
-      choose.rightcom = "decorate";
+      // choose.rightcom = "decorate";
 
       break;
     case "list":
-      choose.currCompName = "componenmanagement";
       choose.rightcom = "componenmanagement";
+
       break;
     case "detail":
-      // choose.currCompName =
-
-      // const currentComponent = choose.currentproperties[0];
-
-      // choose.index = index;
-      // choose.currCompName = choose.style!;
-      // // website
-      // // componenmanagement
-      // // components
-      // /* 切换组件 */
-
-      // // @ts-ignore
+      const number = 0;
+      const res = datas.pageComponents[number];
+      const index = number;
+      choose.index = index;
+      /* 切换组件 */
+      choose.rightcom = res.style;
+      /* 丢样式 */
+      choose.currentproperties = res.setStyle;
+      /* 替换 */
+      datas.pageComponents.forEach((res) => {
+        /* 修改选中 */
+        if (res.active === true) res.active = false;
+      });
+      /* 选中样式 */
+      res.active = true;
       // choose.rightcom = choose.style;
-      // /* 丢样式 */
-      // choose.currentproperties = res.setStyle;
-
-      // /* 替换 */
-      // datas.pageComponents.forEach((res) => {
-      //   /* 修改选中 */
-      //   if (res.active === true) res.active = false;
-      // });
-
-      choose.rightcom = choose.currCompName;
 
       break;
   }
