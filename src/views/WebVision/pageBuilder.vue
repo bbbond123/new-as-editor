@@ -122,13 +122,13 @@
               <div v-show="!isEditJSON">
                 <component :is="rightcom" :datas="setStyle" />
               </div>
-              <editorModelStyle
-                v-show="isEditJSON"
-                :isEditJSON="isEditJSON"
-                :pageModel="'componentMode'"
-                :datas="setStyle"
-                @submitJson="() => {}"
-              />
+              <div v-show="isEditJSON">
+                <editorModelStyle
+                  :pageModel="'componentMode'"
+                  :datas="setStyle"
+                  @submitJson="() => {}"
+                />
+              </div>
             </div>
           </el-tab-pane>
         </el-tabs>
@@ -193,11 +193,9 @@ const initChooseData = () => {
     setStyle: {}, // 当前选中组件的对应的属性
   };
 };
-const isLoading = ref(false)
+const isLoading = ref(false);
 
-const onSubmitAll = ()=> {
-
-}
+const onSubmitAll = () => {};
 // 选择组件数据
 const choose = reactive<ChooseData>(initChooseData());
 

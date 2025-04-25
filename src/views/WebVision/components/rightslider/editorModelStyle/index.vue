@@ -3,6 +3,9 @@
   <div class="custommodulestyle">
     <h2>{{ datas.componentType }}</h2>
     <el-form label-width="auto" ref="ruleFormRef" :model="datas" :rules="rules">
+      <el-form-item label="其他名称" prop="name">
+        <el-input v-model="datas.title" />
+      </el-form-item>
       <!-- 组件名称 -->
       <el-form-item label="组件名称" prop="name">
         <el-input v-model="datas.componentName" />
@@ -36,9 +39,10 @@
 </template>
 
 <script lang="ts" setup>
-import { attempt, isError } from "lodash-es";
+import isError from "lodash-es/isError";
+import attempt from "lodash-es/attempt";
 import { ref, reactive, type PropType } from "vue";
-import type { FormInstance, FormRules } from "element-plus";
+import { ElMessage, type FormInstance, type FormRules } from "element-plus";
 // import type { JSONComponentStyle } from '@/views/WebVision/type'
 import { editTemplateComponent } from "@/api/webgw/template/index";
 import { editWebsiteComponent } from "@/api/webgw/websit/index";
