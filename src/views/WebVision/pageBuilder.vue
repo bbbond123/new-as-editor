@@ -119,10 +119,10 @@ import componentProperties from "@/views/WebVision/const/componentProperties"; /
 import phoneBottom from "@/views/WebVision/components/phoneBottom/index.vue";
 import headerTop from "@/views/WebVision/components/headerTop/index.vue";
 import utils from "@/views/WebVision/const/index";
-import { ETab } from "./type";
+import { ETab, type ChooseData, type ComponentItem, type IDatas } from "./type";
 
 // 加载当前页面数据
-const datas = reactive({
+const datas = reactive<IDatas>({
   // page
   page: {
     name: "页面标题", //页面名称
@@ -131,14 +131,6 @@ const datas = reactive({
   // list
   pageComponents: [], //页面组件
 });
-
-/**
- * 切换组件位置  用于组件管理中删除功能
- * @param {Object} res 组件切换后返回的位置
- */
-const onSortList = (res: any) => {
-  datas.pageComponents = res;
-};
 
 const initChooseData = () => {
   return {
@@ -153,7 +145,29 @@ const initChooseData = () => {
 };
 
 // 选择组件数据
-const choose = reactive(initChooseData());
+const choose = reactive<ChooseData>(initChooseData());
+
+//website list detail
+const tab = ref<ETab>(ETab.page);
+
+const onTabChange = (val: ETab) => {
+  switch (val) {
+    case ETab.page:
+      break;
+    case ETab.list:
+      break;
+    case ETab.detail:
+      break;
+  }
+};
+
+/**
+ * 切换组件位置  用于组件管理中删除功能
+ * @param {Object} res 组件切换后返回的位置
+ */
+const onSortList = (res: any) => {
+  datas.pageComponents = res;
+};
 
 const unActiveComponent = (_event: Event) => {
   datas.pageComponents.forEach((res) => {
@@ -167,7 +181,7 @@ const unActiveComponent = (_event: Event) => {
  * 选择组件
  * @param {Object} res 当前组件对象
  */
-const activeComponent = (res, index: number) => {
+const activeComponent = (res: ComponentItem, index: number) => {
   datas.pageComponents.forEach((res) => {
     if (res.active === true) {
       res.active = false;
@@ -175,21 +189,18 @@ const activeComponent = (res, index: number) => {
   });
   res.active = true;
 
-  choose.rightcom = res.style; // 加载配置组件
+  choose.rightcom = res.style!; // 加载配置组件
   choose.index = index;
-  choose.setStyle = res.setStyle;
+  choose.setStyle = res.setStyle!;
 
   tab.value = ETab.detail;
 };
 
 // 切换标题
 const headTop = () => {
-  /* 替换 */
+  // 清空选择
   datas.pageComponents.forEach((res) => {
-    /* 修改选中 */
-    if (res.active === true) {
-      res.active = false;
-    }
+    res.active = false;
   });
   tab.value = ETab.page;
 };
@@ -213,20 +224,6 @@ const deleteObj = (index: number) => {
 
   if (index < choose.index) {
     choose.index = choose.index - 1;
-  }
-};
-
-//website list detail
-const tab = ref<ETab>(ETab.page);
-
-const onTabChange = (val: ETab) => {
-  switch (val) {
-    case ETab.page:
-      break;
-    case ETab.list:
-      break;
-    case ETab.detail:
-      break;
   }
 };
 
