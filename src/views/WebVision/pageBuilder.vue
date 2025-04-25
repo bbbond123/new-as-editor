@@ -37,16 +37,11 @@
                   @click="activeComponent(element, index)"
                   class="componentsClass"
                   :style="{
-                    border:
-                      element.active && deleShow ? '2px solid #155bd4' : '',
+                    border: element.active ? '2px solid #155bd4' : '',
                   }"
                 >
                   <template #deles>
-                    <div
-                      v-show="deleShow"
-                      class="deles"
-                      @click.stop="deleteObj(index)"
-                    >
+                    <div class="deles" @click.stop="deleteObj(index)">
                       <!-- 删除组件 -->
                       <span class="iconfont icon-sanjiaoxingzuo"></span>
                       {{ element.text }}
@@ -103,7 +98,6 @@
                 <span>组件设置详情</span>
               </span>
             </template>
-            {{ choose }}
             <component :is="rightcom" :datas="currentproperties" />
           </el-tab-pane>
         </el-tabs>
@@ -148,7 +142,6 @@ const onSortList = (res: any) => {
 
 const initChooseData = () => {
   return {
-    deleShow: true, // 删除标签显示
     pointer: { show: false }, // 穿透
     // 选中组件相关的
     index: -1, // 当前选中组件index
@@ -393,7 +386,7 @@ const dragleaves = () => {
 };
 
 const { pageComponents, page } = toRefs(datas);
-const { deleShow, rightcom, currentproperties, pointer } = toRefs(choose);
+const { rightcom, currentproperties, pointer } = toRefs(choose);
 </script>
 
 <style lang="less" scoped>
