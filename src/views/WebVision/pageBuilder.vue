@@ -290,13 +290,9 @@ const deleteObj = (index: number) => {
 const onTabChange = (val: string) => {
   switch (val) {
     case "website":
-      // choose.tab = "website";
-      // choose.rightcom = "decorate";
-
       break;
     case "list":
       choose.rightcom = "componenmanagement";
-
       break;
     case "detail":
       const number = 0;
@@ -314,8 +310,6 @@ const onTabChange = (val: string) => {
       });
       /* 选中样式 */
       res.active = true;
-      // choose.rightcom = choose.style;
-
       break;
   }
 };
