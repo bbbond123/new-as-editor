@@ -141,7 +141,7 @@ const datas = reactive({
   pageSetup: {
     // 站点，或模版 行数据带过来，跟，并不能做更新，只是显示
     name: "页面标题", //页面名称
-    details: "", //页面描述
+    details: '页面描述信息'
   },
   pageComponents: [], //页面组件
 });
