@@ -132,6 +132,19 @@
             </div>
           </el-tab-pane>
         </el-tabs>
+        <section class="submit-area">
+          <div class="all-submit">
+            <el-button
+              class="btn"
+              @click="onSubmitAll"
+              type="primary"
+              :loading="isLoading"
+              style="width: 160px"
+            >
+              全部更新
+            </el-button>
+          </div>
+        </section>
       </section>
     </section>
     <!-- 
@@ -180,7 +193,11 @@ const initChooseData = () => {
     setStyle: {}, // 当前选中组件的对应的属性
   };
 };
+const isLoading = ref(false)
 
+const onSubmitAll = ()=> {
+
+}
 // 选择组件数据
 const choose = reactive<ChooseData>(initChooseData());
 
@@ -627,14 +644,22 @@ const { rightcom, setStyle, pointer } = toRefs(choose);
 
 .component-settings {
   width: 450px;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  height: 100%;
 }
 
 .custom-tabs {
+  flex: 1;
   height: 100%;
+  overflow: hidden;
   :deep(.el-tabs__content) {
     overflow: auto;
     padding: 10px;
-
+    display: flex;
+    flex-direction: column;
+    height: 100%;
     &::-webkit-scrollbar {
       width: 6px;
       border-radius: 10px;
@@ -665,5 +690,18 @@ const { rightcom, setStyle, pointer } = toRefs(choose);
   place-items: center;
 }
 .editor-area {
+}
+
+.submit-area {
+  background: var(--el-bg-color-overlay);
+  border-left: 1px solid var(--el-border-color);
+  min-height: 60px;
+}
+
+.all-submit {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
 }
 </style>
