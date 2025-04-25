@@ -2,6 +2,9 @@ import { createRouter, createWebHashHistory } from "vue-router";
 
 const routes = [
   {
+    redirect: "/webVision",
+  },
+  {
     path: "/",
     name: "layout",
     redirect: "/home",
@@ -23,7 +26,7 @@ const routes = [
   {
     path: "/webVision",
     name: "webVision",
-    component: () => import("@/views/WebVision/index.vue"),
+    component: () => import("@/views/WebVision/pageBuilder.vue"),
     meta: {
       keepAlive: false,
     },

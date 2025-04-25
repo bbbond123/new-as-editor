@@ -141,13 +141,13 @@
                 <span>组件设置详情</span>
               </span>
             </template>
+            <component
+              :data-name="rightcom"
+              :is="rightcom"
+              :datas="currentproperties"
+              @componenmanagement="onChangePageComponent"
+            />
           </el-tab-pane>
-          <component
-            :data-name="rightcom"
-            :is="rightcom"
-            :datas="currentproperties"
-            @componenmanagement="onChangePageComponent"
-          />
 
           <!-- <div class="decorateAll"> -->
           <!-- 页面设置 -->
@@ -487,7 +487,7 @@ watch(
   () => choose.rightcom,
   (newval) => {
     if (newval === "decorate") {
-      console.log("🚀 ~ newval:", newval)
+      console.log("🚀 ~ newval:", newval);
       datas.pageComponents.forEach((res) => {
         /* 修改选中 */
         if (res.active === true) res.active = false;
