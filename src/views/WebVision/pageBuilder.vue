@@ -4,7 +4,6 @@
     <section class="operation">
       <!-- 组件 -->
       <sliderassembly :pointer="pointer" />
-
       <!-- 手机 -->
       <div class="phone" @click="unActiveComponent">
         <section
@@ -72,31 +71,6 @@
         </section>
         <!-- 底部 -->
       </div>
-
-      <!-- 页面设置tab -->
-      <!-- <div class="decorateTab">
-        <span
-          :class="rightcom === 'decorate' ? 'active' : ''"
-          @click="rightcom = 'decorate'"
-        >
-          <i class="iconfont icon-wangye" />
-          页面设置
-        </span>
-        <span
-          :class="rightcom === 'componenmanagement' ? 'active' : ''"
-          @click="rightcom = 'componenmanagement'"
-        >
-          <i class="iconfont icon-zujian" />
-          组件管理
-        </span>
-        <span
-          class="active"
-          v-show="rightcom != 'componenmanagement' && rightcom != 'decorate'"
-        >
-          <i class="iconfont icon-zujian" />
-          组件设置
-        </span>
-      </div> -->
       <!-- 右侧工具栏 -->
       <section class="component-settings">
         <el-tabs
@@ -106,14 +80,6 @@
           @tab-change="onTabChange"
           :stretch="true"
         >
-          <!-- 1 组件设置  -->
-          <!-- <el-tab-pane label="其他设置" name="comp"></el-tab-pane>
-          <el-tab-pane label="组件设置" name="detail"></el-tab-pane> -->
-          <!-- 2 模版设置 -->
-          <!-- <el-tab-pane label="模版设置" name="template"></el-tab-pane>
-        <el-tab-pane label="组件排版" name="componenmanagement"></el-tab-pane>
-        <el-tab-pane label="组件设置" name="detail"></el-tab-pane> -->
-          <!-- 3 站点设置 -->
           <el-tab-pane name="website">
             <template #label>
               <span class="custom-tabs-label">
@@ -154,24 +120,12 @@
               @componenmanagement="onChangePageComponent"
             />
           </el-tab-pane>
-
-          <!-- <div class="decorateAll"> -->
-          <!-- 页面设置 -->
-          <!-- <transition name="decorateAnima"> -->
-          <!-- 动态组件 -->
-          <!-- <component
-            :is="rightcom"
-            :datas="currentproperties"
-            @componenmanagement="componenmanagement"
-          /> -->
-          <!-- </transition> -->
-          <!-- </div> -->
         </el-tabs>
       </section>
     </section>
-    <!-- <div class="debugger-text">
+    <div class="debugger-text">
       {{ choose }}
-    </div> -->
+    </div>
   </div>
 </template>
 
