@@ -114,6 +114,7 @@
                 <span>组件设置详情</span>
               </span>
             </template>
+            {{ choose }}
             <component
               :is="rightcom"
               :datas="currentproperties"
@@ -178,7 +179,6 @@ const choose = reactive({
 
 const unActiveComponent = (event: Event) => {
   // 站点的话
-  // choose.tab = "";
   // choose.index = -1;
   datas.pageComponents.forEach((res) => {
     res.active = false;
@@ -192,7 +192,6 @@ const unActiveComponent = (event: Event) => {
  */
 const activeComponent = (res, index: number) => {
   choose.index = index;
-  choose.tab = "detail";
   // website   // componenmanagement   // components
   /* 切换组件 */
   // @ts-ignore
@@ -232,9 +231,14 @@ const onStopPropagation = (event: Event) => {
  */
 const deleteObj = (index: number) => {
   datas.pageComponents.splice(index, 1);
+
+  if (datas.pageComponents.length === 0) {
+    tab.value = "website";
+    return;
+  }
+
   if (choose.index === index) {
     choose.rightcom = "decorate";
-    choose.tab = "list";
     choose.rightcom = "componenmanagement";
     choose.currentproperties = datas.pageComponents;
   }
@@ -243,30 +247,33 @@ const deleteObj = (index: number) => {
   }
 };
 
+//website list detail
+const tab = ref("website");
+
 const onTabChange = (val: string) => {
   switch (val) {
     case "website":
       break;
     case "list":
-      choose.rightcom = "componenmanagement";
-      choose.currentproperties = datas.pageComponents;
+      // choose.rightcom = "componenmanagement";
+      // choose.currentproperties = datas.pageComponents;
       break;
     case "detail":
-      const number = 0;
-      const res = datas.pageComponents[number];
-      const index = number;
-      choose.index = index;
-      /* 切换组件 */
-      choose.rightcom = res.style;
-      /* 丢样式 */
-      choose.currentproperties = res.setStyle;
-      /* 替换 */
-      datas.pageComponents.forEach((res) => {
-        /* 修改选中 */
-        if (res.active === true) res.active = false;
-      });
-      /* 选中样式 */
-      res.active = true;
+      // const number = 0;
+      // const res = datas.pageComponents[number];
+      // const index = number;
+      // choose.index = index;
+      // /* 切换组件 */
+      // choose.rightcom = res.style;
+      // /* 丢样式 */
+      // choose.currentproperties = res.setStyle;
+      // /* 替换 */
+      // datas.pageComponents.forEach((res) => {
+      //   /* 修改选中 */
+      //   if (res.active === true) res.active = false;
+      // });
+      // /* 选中样式 */
+      // res.active = true;
       break;
   }
 };
@@ -416,7 +423,6 @@ const drop = (event: any) => {
   /* 丢样式 */
   choose.currentproperties = data.setStyle;
 
-  choose.tab = "detail";
 };
 
 const dragleaves = () => {
@@ -427,7 +433,7 @@ const dragleaves = () => {
 };
 
 const { id, pageSetup, pageComponents } = toRefs(datas);
-const { deleShow, tab, rightcom, currentproperties, pointer } = toRefs(choose);
+const { deleShow, rightcom, currentproperties, pointer } = toRefs(choose);
 </script>
 
 <style lang="less" scoped>
