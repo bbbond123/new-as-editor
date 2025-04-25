@@ -40,7 +40,7 @@ export interface Choose {
    */
   tab: string;
   rightcom: string; // 组件名称
-  currentproperties: unknown;
+  setStyle: unknown;
   offsetY: number;
   pointer: { show: boolean };
 }

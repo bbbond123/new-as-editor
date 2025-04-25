@@ -98,7 +98,7 @@
                 <span>组件设置详情</span>
               </span>
             </template>
-            <component :is="rightcom" :datas="currentproperties" />
+            <component :is="rightcom" :datas="setStyle" />
           </el-tab-pane>
         </el-tabs>
       </section>
@@ -145,17 +145,17 @@ const initChooseData = () => {
     pointer: { show: false }, // 穿透
     // 选中组件相关的
     index: -1, // 当前选中组件index
-    rightcom: "blank", // 当前选中组件的对应的文件名字
-    currentproperties: {}, // 当前选中组件的对应的属性
-
     offsetY: 0, //记录上一次距离父元素高度
+
+    rightcom: "blank", // 当前选中组件的对应的文件名字
+    setStyle: {}, // 当前选中组件的对应的属性
   };
 };
 
 // 选择组件数据
 const choose = reactive(initChooseData());
 
-const unActiveComponent = (event: Event) => {
+const unActiveComponent = (_event: Event) => {
   datas.pageComponents.forEach((res) => {
     res.active = false;
   });
@@ -177,7 +177,7 @@ const activeComponent = (res, index: number) => {
 
   choose.rightcom = res.style; // 加载配置组件
   choose.index = index;
-  choose.currentproperties = res.setStyle;
+  choose.setStyle = res.setStyle;
 
   tab.value = ETab.detail;
 };
@@ -208,7 +208,7 @@ const deleteObj = (index: number) => {
 
   if (datas.pageComponents.length === 0 || choose.index === index) {
     choose.rightcom = "blank";
-    choose.currentproperties = {};
+    choose.setStyle = {};
   }
 
   if (index < choose.index) {
@@ -375,7 +375,7 @@ const drop = (event: any) => {
   /* 切换组件 */
   choose.rightcom = data.style;
   /* 当前组件样式 */
-  choose.currentproperties = data.setStyle;
+  choose.setStyle = data.setStyle;
 };
 
 const dragleaves = () => {
@@ -386,7 +386,7 @@ const dragleaves = () => {
 };
 
 const { pageComponents, page } = toRefs(datas);
-const { rightcom, currentproperties, pointer } = toRefs(choose);
+const { rightcom, setStyle, pointer } = toRefs(choose);
 </script>
 
 <style lang="less" scoped>
