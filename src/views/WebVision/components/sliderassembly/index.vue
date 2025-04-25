@@ -67,97 +67,97 @@ const datas = reactive<DataItem[]>([
     comList: [
       {
         text: "商品搜索",
-        type: "1-1",
+
         icon: "icon-shangpinsousuo",
         name: "commoditysearch",
       },
       {
         text: "标题文本",
-        type: "1-3",
+
         icon: "icon-Component-biaotiwenzi",
         name: "captiontext",
       },
       {
         text: "图片广告",
-        type: "1-3",
+
         icon: "icon-tupianguanggao",
         name: "pictureads",
       },
       {
         text: "图文导航",
-        type: "1-4",
+
         icon: "icon-icon_tupiandaohang",
         name: "graphicnavigation",
       },
       {
         text: "底部导航",
-        type: "1-5",
+
         icon: "icon-daohang",
         name: "tabbar",
       },
       {
         text: "魔方",
-        type: "1-6",
+
         icon: "icon-mofang",
         name: "magiccube",
       },
       {
         text: "公告",
-        type: "1-7",
+
         icon: "icon-gonggao",
         name: "notice",
       },
       {
         text: "视频",
-        type: "1-8",
+
         icon: "icon-shipin",
         name: "videoss",
       },
       {
         text: "富文本",
-        type: "1-10",
+
         icon: "icon-fuwenben",
         name: "richtext",
       },
       {
         text: "辅助分割",
-        type: "1-11",
+
         icon: "icon-Component-fuzhufenge",
         name: "auxiliarysegmentation",
       },
       {
         text: "店铺信息",
-        type: "1-12",
+
         icon: "icon-dianpuxinxi",
         name: "storeinformation",
       },
       {
         text: "单元格",
-        type: "1-13",
+
         icon: "icon-jinrudianpu",
         name: "entertheshop",
       },
       {
         text: "社群涨粉",
-        type: "1-14",
+
         icon: "icon-kuaisuzhangfen",
         name: "communitypowder",
       },
       {
         text: "关注公众号",
-        type: "1-15",
+
         icon: "icon-gongzhonghao",
         name: "follow",
       },
       {
         text: "悬浮",
-        type: "1-16",
+
         icon: "icon-wangye",
         name: "suspension",
       },
       {
         text: "自定义模块",
-        type: "demo",
+        type: "",
         icon: "icon-zidingyimokuai",
         name: "custommodule",
       },

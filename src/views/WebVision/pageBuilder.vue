@@ -106,7 +106,7 @@
           <el-tab-pane
             label="组件设置详情"
             :name="ETab.detail"
-            :disabled="pageComponents.length === 0"
+            :disabled="pageComponents && pageComponents.length === 0"
           >
             <template #label>
               <span class="custom-tabs-label">
@@ -145,7 +145,6 @@ import { ETab } from "./type";
 // 页面数据
 const datas = reactive({
   id: null, //当前页面id
-  demo: "自定义内容",
   pageSetup: {
     // 页面设置属性
     name: "页面标题", //页面名称
@@ -171,7 +170,7 @@ const onChangePageComponent = (res: any) => {
 const choose = reactive({
   deleShow: true, // 删除标签显示
   index: -1, // 当前选中的index
-  rightcom: "decorate", // 右侧组件切换
+  rightcom: "", // 右侧组件切换
   currentproperties: datas.pageSetup, // 当前属性  默认：页面设置
   offsetY: 0, //记录上一次距离父元素高度
   pointer: { show: false }, // 穿透

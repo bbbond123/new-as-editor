@@ -14,7 +14,6 @@ const onPreview = () => {
 // 页面数据
 const datas = reactive({
   id: null, //当前页面id
-  demo: "自定义内容",
   pageSetup: {
     // 页面设置属性
     name: "页面标题", //页面名称

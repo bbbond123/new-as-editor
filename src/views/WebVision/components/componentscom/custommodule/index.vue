@@ -1,6 +1,6 @@
 <template>
   <div class="custommodule">
-    {{ datas.demo }}
+    <!-- {{ datas.demo }} -->
 
     <img :src="datas.img" alt="" />
     <!-- 删除组件 -->
@@ -10,7 +10,6 @@
 
 <script setup lang="ts">
 interface Datas {
-  demo: string;
   img: string;
 }
 
