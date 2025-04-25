@@ -6,7 +6,6 @@ const componentProperties = new Map();
 componentProperties.set("captiontext", {
   component: "captiontext",
   text: "标题文字",
-  type: "1-3",
   active: true,
   style: "captiontextsstyle",
   setStyle: {
@@ -37,7 +36,6 @@ componentProperties.set("captiontext", {
 componentProperties.set("listswitching", {
   component: "listswitching",
   text: "商品",
-  type: "2-1",
   active: true,
   style: "listswitchingstyle",
   setStyle: {
@@ -79,7 +77,6 @@ componentProperties.set("listswitching", {
 componentProperties.set("pictureads", {
   component: "pictureads",
   text: "图片广告",
-  type: "1-3",
   active: true,
   style: "pictureadsstyle",
   setStyle: {
@@ -97,7 +94,6 @@ componentProperties.set("pictureads", {
 componentProperties.set("graphicnavigation", {
   component: "graphicnavigation",
   text: "图文导航",
-  type: "1-4",
   active: true,
   style: "graphicnavigationstyle",
   setStyle: {
@@ -118,7 +114,6 @@ componentProperties.set("graphicnavigation", {
 componentProperties.set("richtext", {
   component: "richtext",
   text: "富文本",
-  type: "1-10",
   active: true,
   style: "richtextstyle",
   setStyle: {
@@ -130,7 +125,6 @@ componentProperties.set("richtext", {
 componentProperties.set("magiccube", {
   component: "magiccube",
   text: "魔方",
-  type: "1-6",
   active: true,
   style: "magiccubestyle",
   setStyle: {
@@ -170,7 +164,6 @@ componentProperties.set("magiccube", {
 componentProperties.set("auxiliarysegmentation", {
   component: "auxiliarysegmentation",
   text: "辅助分割",
-  type: "1-11",
   active: true,
   style: "auxiliarysegmentationstyle",
   setStyle: {
@@ -185,7 +178,6 @@ componentProperties.set("auxiliarysegmentation", {
 componentProperties.set("commoditysearch", {
   component: "commoditysearch",
   text: "商品搜索",
-  type: "1-1",
   active: true,
   style: "commoditysearchstyle",
   setStyle: {
@@ -204,7 +196,6 @@ componentProperties.set("commoditysearch", {
 componentProperties.set("storeinformation", {
   component: "storeinformation",
   text: "店铺信息",
-  type: "1-12",
   active: true,
   style: "storeinformationstyle",
   setStyle: {
@@ -219,7 +210,6 @@ componentProperties.set("storeinformation", {
 componentProperties.set("entertheshop", {
   component: "entertheshop",
   text: "单元格",
-  type: "1-13",
   active: true,
   style: "entertheshopstyle",
   setStyle: {
@@ -234,7 +224,6 @@ componentProperties.set("entertheshop", {
 componentProperties.set("notice", {
   component: "notice",
   text: "公告",
-  type: "1-7",
   active: true,
   style: "noticestyle",
   setStyle: {
@@ -247,7 +236,6 @@ componentProperties.set("notice", {
 componentProperties.set("videoss", {
   component: "videoss",
   text: "视频",
-  type: "1-8",
   active: true,
   style: "videostyle",
   setStyle: {
@@ -261,7 +249,6 @@ componentProperties.set("videoss", {
 componentProperties.set("custommodule", {
   component: "custommodule",
   text: "自定义模块",
-  type: "demo",
   active: true,
   style: "custommodulestyle",
   setStyle: {
@@ -273,7 +260,6 @@ componentProperties.set("custommodule", {
 componentProperties.set("communitypowder", {
   component: "communitypowder",
   text: "社群涨粉",
-  type: "1-14",
   active: true,
   style: "communitypowderstyle",
   setStyle: {
@@ -289,7 +275,6 @@ componentProperties.set("communitypowder", {
 componentProperties.set("storenotecard", {
   component: "storenotecard",
   text: "文章模块",
-  type: "2-2",
   active: true,
   style: "storenotecardstyle",
   setStyle: {
@@ -313,7 +298,6 @@ componentProperties.set("storenotecard", {
 componentProperties.set("crowdoperation", {
   component: "crowdoperation",
   text: "人群运营",
-  type: "1-17",
   active: true,
   style: "crowdoperationstyle",
   setStyle: {
@@ -323,7 +307,6 @@ componentProperties.set("crowdoperation", {
 componentProperties.set("personalizedrecommendation", {
   component: "personalizedrecommendation",
   text: "个性化推荐",
-  type: "1-18",
   active: true,
   style: "personalizedrecommendationstyle",
   setStyle: {
@@ -333,7 +316,6 @@ componentProperties.set("personalizedrecommendation", {
 componentProperties.set("onlineservice", {
   component: "onlineservice",
   text: "在线客服",
-  type: "1-19",
   active: true,
   style: "onlineservicestyle",
   setStyle: {
@@ -343,7 +325,6 @@ componentProperties.set("onlineservice", {
 componentProperties.set("investigate", {
   component: "investigate",
   text: "表单模块",
-  type: "2-3",
   active: true,
   style: "investigatestyle",
   setStyle: {
@@ -355,7 +336,6 @@ componentProperties.set("investigate", {
 componentProperties.set("tabbar", {
   component: "tabbar",
   text: "底部导航",
-  type: "1-5",
   active: true,
   style: "tabbarstyle",
   setStyle: {
@@ -373,7 +353,6 @@ componentProperties.set("tabbar", {
 componentProperties.set("follow", {
   component: "follow",
   text: "关注公众号",
-  type: "1-15",
   active: true,
   style: "followStyle",
   setStyle: {
@@ -386,7 +365,6 @@ componentProperties.set("follow", {
 componentProperties.set("suspension", {
   component: "suspension",
   text: "悬浮按钮",
-  type: "1-16",
   active: true,
   style: "suspensionstyle",
   setStyle: {

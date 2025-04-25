@@ -13,6 +13,7 @@
           id="imageTofile"
           @click="onStopPropagation"
         >
+          {{ datas }}
           <img src="@/assets/images/phoneTop.png" alt="" class="statusBar" />
           <!-- 头部导航 -->
           <headerTop :pageSetup="pageSetup" @click="headTop" />
@@ -39,7 +40,6 @@
                 <component
                   :is="element.component"
                   :datas="element.setStyle"
-                  :data-type="element.type"
                   @click="activeComponent(element, index)"
                   class="componentsClass"
                   :style="{
@@ -214,7 +214,6 @@ const choose = reactive<Choose>({
   rightcom: "decorate", // 右侧组件切换
   currentproperties: datas.pageSetup, // 当前属性  默认：页面设置
   offsetY: 0, //记录上一次距离父元素高度
-  onlyOne: ["1-5", "1-16"], // 只能存在一个的组件(组件的type)
   pointer: { show: false }, // 穿透
 });
 
@@ -488,6 +487,7 @@ watch(
   () => choose.rightcom,
   (newval) => {
     if (newval === "decorate") {
+      console.log("🚀 ~ newval:", newval)
       datas.pageComponents.forEach((res) => {
         /* 修改选中 */
         if (res.active === true) res.active = false;

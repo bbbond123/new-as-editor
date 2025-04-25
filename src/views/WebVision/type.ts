@@ -45,7 +45,6 @@ export interface Choose {
   rightcom: string; // 组件名称
   currentproperties: unknown;
   offsetY: number;
-  onlyOne: string[];
   pointer: { show: boolean };
 }
 export interface ComponentStyle {
