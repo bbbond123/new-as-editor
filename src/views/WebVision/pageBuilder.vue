@@ -98,9 +98,8 @@
                 <span>组件管理</span>
               </span>
             </template>
-            <component
-              :is="rightcom"
-              :datas="currentproperties"
+            <componenmanagement
+              :datas="pageComponents"
               @componenmanagement="onChangePageComponent"
             />
           </el-tab-pane>
