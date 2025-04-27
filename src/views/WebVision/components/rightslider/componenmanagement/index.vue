@@ -17,14 +17,14 @@
       >
         <template #item="{ element, index }">
           <div
-            :class="element.text == '底部导航' ? 'item delDragitem' : 'item'"
+            :class="element.text === '底部导航' ? 'item delDragitem' : 'item'"
           >
             <p>{{ element.text }}</p>
             <el-popconfirm
               title="您确定要删除该组件吗?"
               icon="el-icon-warning"
               iconColor="red"
-              @confirm="onConfirms(index)"
+              @confirm="onConfirm(index)"
             >
               <template #reference>
                 <van-icon name="delete-o" style="cursor: pointer" />
@@ -37,51 +37,57 @@
   </section>
 </template>
 
-<script>
-import vuedraggable from "vuedraggable"; //拖拽组件
+<script setup lang="ts">
+import { ref, watch, defineComponent } from 'vue'
+import vuedraggable from 'vuedraggable'
 
-export default {
-  name: "componenmanagement",
-  props: ["datas"],
-  components: { vuedraggable },
-  data() {
-    return {
-      data: this.datas,
-    };
-  },
-  methods: {
-    /* 删除组件 */
-    onConfirms(res) {
-      this.data.splice(res, 1);
-      this.$emit("componenmanagement", this.data);
-    },
-  },
-  watch: {
-    datas(newVal) {
-      this.data = newVal;
-    },
+defineComponent({
+  name: 'componenmanagement'
+})
 
-    data(newVal) {
-      this.$emit("componenmanagement", newVal);
-    },
+interface ComponentItem {
+  text: string
+  [key: string]: any
+}
+
+const props = defineProps<{
+  datas: ComponentItem[]
+}>()
+
+const emit = defineEmits<{
+  (e: 'componenmanagement', value: ComponentItem[]): void
+}>()
+
+const data = ref<ComponentItem[]>([])
+
+// Sync props with local state
+watch(
+  () => props.datas,
+  (newVal) => {
+    data.value = newVal
   },
-  computed: {},
-};
+  { immediate: true }
+)
+
+// Emit changes to parent
+watch(data, (newVal) => {
+  emit('componenmanagement', newVal)
+}, { deep: true })
+
+const onConfirm = (index: number) => {
+  data.value.splice(index, 1)
+}
 </script>
 
 <style scoped lang="less">
 /* 组件管理 */
 .componenManagement {
   width: 100%;
-  // position: absolute;
-  // left: 0;
-  // top: 0;
   padding: 0 10px;
   box-sizing: border-box;
   /* 标题 */
   h2 {
     padding: 24px 16px 10px 0;
-    // margin-bottom: 15px;
     font-size: 18px;
     font-weight: 600;
     color: #323233;
