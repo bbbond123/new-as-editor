@@ -199,13 +199,14 @@ const onSubmitAll = () => {};
 
 onMounted(() => {
   // 加载一个组件
-  // const componentName = "postdetailsbox";
-  // const component = utils.deepClone(componentProperties.get(componentName));
-  // datas.pageComponents.push(component);
+  const componentName = "postdetailsbox";
+  const component = utils.deepClone(componentProperties.get(componentName));
+  datas.pageComponents.push(component);
+
+  activeComponent(component, 0);
 
   // 加载模版组件
   //
-
 });
 
 // 选择组件数据
@@ -652,7 +653,7 @@ const { rightcom, setStyle, pointer } = toRefs(choose);
 }
 
 .component-settings {
-  width: 450px;
+  width: 550px;
   display: flex;
   flex-direction: column;
   background-color: white;
