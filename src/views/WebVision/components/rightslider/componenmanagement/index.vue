@@ -57,7 +57,6 @@
 </template>
 
 <script setup lang="ts">
-import { ElMessage } from "element-plus";
 import { ref, watch, defineComponent, computed } from "vue";
 import { Delete } from "@element-plus/icons-vue";
 import vuedraggable from "vuedraggable";
@@ -80,26 +79,13 @@ const handleSelectAll = (val: boolean) => {
 
 //批量 删除
 const deleteSelected = async () => {
-  // const selectedIds = data.value
-  //   .filter((item) => item.active)
-  //   .map((item) => item.setStyle?.componentId)
-  //   .filter(Boolean) as string[];
-
-  // console.log('data.value', data.value)
-  // console.log('selectedIds', selectedIds)
-  // return
-  // if (await deleteComponents(selectedIds)) {
   data.value = data.value.filter((item) => !item.active);
-  // emit("componenmanagement", data.value);
-  // }
 };
 
 const checkMove = (e) => {
   window.console.log("Future index: " + e.draggedContext.futureIndex);
 };
 const handleItemSelect = (event: Event) => {
-  // event.stopPropagation()
-  // console.log('data.value', data.value)
   selectAll.value = data.value.every((item) => item.active);
 };
 
@@ -144,19 +130,7 @@ const onConfirms = (index: number) => deleteItem(index);
 
 //单个删除
 const deleteItem = async (index: number) => {
-  // console.log('index', index)
-
-  const componentId = data.value[index].setStyle?.componentId;
-
-  if (!componentId) {
-    ElMessage.error("无效的组件ID");
-    return;
-  }
-
-  // if (await deleteComponents([componentId])) {
   data.value.splice(index, 1);
-  // emit("componenmanagement", data.value);
-  // }
 };
 </script>
 
