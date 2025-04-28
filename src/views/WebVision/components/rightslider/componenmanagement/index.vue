@@ -59,6 +59,7 @@
 <script setup lang="ts">
 import { ElMessage } from "element-plus";
 import { ref, watch, defineComponent, computed } from "vue";
+import { Delete } from "@element-plus/icons-vue";
 import vuedraggable from "vuedraggable";
 
 defineComponent({
@@ -215,7 +216,9 @@ const deleteItem = async (index: number) => {
     line-height: 2.5rem;
     width: 1.5rem;
     cursor: pointer;
-    text-align: center;
+    //text-align: center;
+    display: grid;
+    place-items: center;
   }
 }
 </style>
