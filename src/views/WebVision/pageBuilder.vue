@@ -202,7 +202,7 @@ onMounted(() => {
   const componentName = "postdetailsbox";
   const component = utils.deepClone(componentProperties.get(componentName));
   datas.pageComponents.push(component);
-
+  // 选中第一个
   activeComponent(component, 0);
 
   // 加载模版组件
