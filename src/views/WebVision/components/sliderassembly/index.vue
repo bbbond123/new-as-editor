@@ -295,6 +295,7 @@ const dragends = (event: DragEvent): void => {
     align-items: center;
     cursor: all-scroll;
     transition: all 0.3s;
+    padding-left: 10px;
     .comp-icon {
       font-size: 1.5rem;
       width: 2rem;
